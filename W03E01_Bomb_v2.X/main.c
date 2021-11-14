@@ -19,6 +19,7 @@
 
 // Global variable (volatile!), 1 = TRUE and running, 0 = FALSE and halted
 volatile uint8_t g_running = 1;
+// Global variable for counting ticks
 volatile uint8_t g_clockticks = 0;
 
 // 7-segment values from 0 to 9 in an array + first one being "empty"
@@ -37,6 +38,10 @@ uint8_t seven_segment_numbers[] =
     0b01100111 // 9
 };
 
+/* 
+ * This function is copied and modified from technical brief TB3213  
+ * To enable writing to CCP and enable PIT
+ */
 void rtc_init(void) 
 { 
      uint8_t temp; // Temporary variable to manipulate the register
@@ -66,8 +71,7 @@ void rtc_init(void)
      // Enable Periodic Interrupt 
      RTC.PITINTCTRL = RTC_PI_bm; 
      // Set period to 4 096 cycles (1/8 second) and enable PIT function 
-     RTC.PITCTRLA = RTC_PERIOD_CYC4096_gc | RTC_PITEN_bm; 
-     
+     RTC.PITCTRLA = RTC_PERIOD_CYC4096_gc | RTC_PITEN_bm;
 }
  
 int main(void) 
@@ -79,15 +83,13 @@ int main(void)
     PORTF.OUTSET = PIN5_bm;
     PORTC.DIRSET = 0xFF; // Sets PORTC (LED display) ports as outputs (1)
 
-    
-    
     /*If the wire in PORTA pin 4 loses connection to the ground,
      *internal pull-up resistor wins and PA4 input becomes HIGH and
      *triggers an interrupt due to a rising edge. 
      *PULLUPEN = enable bit mask, RISING = rising edge*/
     PORTA.PIN4CTRL = PORT_PULLUPEN_bm | PORT_ISC_RISING_gc;
     
-    //set_sleep_mode(SLPCTRL_SMODE_IDLE_gc); // Set IDLE sleep mode 
+    //set_sleep_mode(SLPCTRL_SMODE_IDLE_gc); // Set IDLE sleep mode, not needed?
     sei(); // Enables interrupts
     
     uint8_t index = 10; // Display starts from number 9
@@ -112,42 +114,30 @@ int main(void)
         }
         
         // If one second has passed do something
-        
-        if(index >= 2)
+        if(g_clockticks < 9)
         {
-            index -= g_clockticks; // Decrement index which affects the displayed number
-            g_clockticks = 0;
-        }
-        
-        /*When timer reaches index 1 (zero), go into a new indefinite superloop
-         *and blink the screen between zero and empty. */
-        
-        if(index < 2){
-            PORTF.OUTTGL = PIN5_bm; // Toggle on-board LED (PF5)
-        }
-        else if(index == 0){
-            PORTF.OUTTGL = PIN5_bm; // Toggle on-board LED (PF5)
-            index += 1;
-        }
-        
-        /*
-        if(index < 2)
+            index = 9 - g_clockticks;
+        } else
         {
-            PORTF.OUTTGL = PIN5_bm; // Toggle on-board LED (PF5)
             index = 0;
-            PORTC.OUT = seven_segment_numbers[index];
         }
-        else if(index < 1)
+        
+        /*When timer reaches below index 1 (zero)
+         *blink the screen between zero and empty. */
+        
+        if(index == 0)
         {
             PORTF.OUTTGL = PIN5_bm; // Toggle on-board LED (PF5)
-            index = 1;
-            PORTC.OUT = seven_segment_numbers[index];
+            index += 1; // Add one to index for blinking
         }
-        */
-        
+        else if(index < 2)
+        {
+            PORTF.OUTTGL = PIN5_bm; // Toggle on-board LED (PF5)
+        }     
         
         // Changes display to a number marked by index of array
         PORTC.OUT = seven_segment_numbers[index];
+        // Toggle device into sleep mode until next interrupt
         sleep_mode();
     }
 }
@@ -156,8 +146,13 @@ ISR(PORTA_PORT_vect)
 {
     // Clears interrupt flag(s) by writing 1 over the module
     PORTA.INTFLAGS = 0xFF;
-    // When an interrupt happens stop the main superloop via global variable
-    g_running = 0;
+    /* When an interrupt happens halt the main superloop via global variable
+     * but only if the timer hasn't reached 0.
+     */
+    if(g_clockticks < 9)
+    {
+        g_running = 0;
+    }
 }
 
 ISR(RTC_PIT_vect)
@@ -165,10 +160,11 @@ ISR(RTC_PIT_vect)
     // Clears interrupt flag(s) by writing 1 over the module
     RTC.PITINTFLAGS = 0xFF;
     
-    // When an interrupt happens stop the main superloop via global variable
+    // Counter to count seconds
     static uint8_t counter = 0;
     counter += 1;
     
+    // When 1 second has passed, add to the global tick variable and reset count
     if(counter == 8)
     {
         g_clockticks += 1;

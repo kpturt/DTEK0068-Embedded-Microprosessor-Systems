@@ -389,9 +389,9 @@ END GROUP
  .debug_str     0x0000000000000000      0xf85 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  .debug_str     0x0000000000000f85       0x37 build/default/production/main.o
 
-.debug_loc      0x0000000000000000       0x8e
+.debug_loc      0x0000000000000000       0x9a
  *(.debug_loc)
- .debug_loc     0x0000000000000000       0x8e build/default/production/main.o
+ .debug_loc     0x0000000000000000       0x9a build/default/production/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -437,80 +437,80 @@ LOAD data_init
                 0x000000000080280c        0x1 build/default/production/main.o
                 0x000000000080280c                g_clockticks
 
-.text.main      0x0000000000000108       0x8c
- .text.main     0x0000000000000108       0x8c build/default/production/main.o
+.text.main      0x0000000000000108       0x88
+ .text.main     0x0000000000000108       0x88 build/default/production/main.o
                 0x0000000000000108                main
 
-.text.rtc_init  0x0000000000000194       0x58
+.text.rtc_init  0x0000000000000190       0x58
  .text.rtc_init
-                0x0000000000000194       0x58 build/default/production/main.o
-                0x0000000000000194                rtc_init
+                0x0000000000000190       0x58 build/default/production/main.o
+                0x0000000000000190                rtc_init
 
 .text.__vector_4
-                0x00000000000001ec       0x3a
+                0x00000000000001e8       0x3a
  .text.__vector_4
-                0x00000000000001ec       0x3a build/default/production/main.o
-                0x00000000000001ec                __vector_4
+                0x00000000000001e8       0x3a build/default/production/main.o
+                0x00000000000001e8                __vector_4
 
 .text.__vector_6
-                0x0000000000000226       0x22
+                0x0000000000000222       0x2a
  .text.__vector_6
-                0x0000000000000226       0x22 build/default/production/main.o
-                0x0000000000000226                __vector_6
+                0x0000000000000222       0x2a build/default/production/main.o
+                0x0000000000000222                __vector_6
 
-.text.avrlibc   0x0000000000000248        0xc
- .text.avrlibc  0x0000000000000248        0xc F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
-                0x0000000000000248                ccp_write_io
+.text.avrlibc   0x000000000000024c        0xc
+ .text.avrlibc  0x000000000000024c        0xc F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
+                0x000000000000024c                ccp_write_io
 
-.text           0x0000000000000254        0x4
- .text          0x0000000000000254        0x4 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
-                0x0000000000000254                __vector_38
-                0x0000000000000254                __vector_22
-                0x0000000000000254                __vector_28
-                0x0000000000000254                __vector_1
-                0x0000000000000254                __vector_32
-                0x0000000000000254                __vector_34
-                0x0000000000000254                __vector_24
-                0x0000000000000254                __vector_12
-                0x0000000000000254                __bad_interrupt
-                0x0000000000000254                __vector_31
-                0x0000000000000254                __vector_35
-                0x0000000000000254                __vector_39
-                0x0000000000000254                __vector_3
-                0x0000000000000254                __vector_23
-                0x0000000000000254                __vector_30
-                0x0000000000000254                __vector_25
-                0x0000000000000254                __vector_11
-                0x0000000000000254                __vector_13
-                0x0000000000000254                __vector_17
-                0x0000000000000254                __vector_19
-                0x0000000000000254                __vector_7
-                0x0000000000000254                __vector_27
-                0x0000000000000254                __vector_5
-                0x0000000000000254                __vector_33
-                0x0000000000000254                __vector_37
-                0x0000000000000254                __vector_9
-                0x0000000000000254                __vector_2
-                0x0000000000000254                __vector_21
-                0x0000000000000254                __vector_15
-                0x0000000000000254                __vector_36
-                0x0000000000000254                __vector_29
-                0x0000000000000254                __vector_8
-                0x0000000000000254                __vector_26
-                0x0000000000000254                __vector_14
-                0x0000000000000254                __vector_10
-                0x0000000000000254                __vector_16
-                0x0000000000000254                __vector_18
-                0x0000000000000254                __vector_20
+.text           0x0000000000000258        0x4
+ .text          0x0000000000000258        0x4 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
+                0x0000000000000258                __vector_38
+                0x0000000000000258                __vector_22
+                0x0000000000000258                __vector_28
+                0x0000000000000258                __vector_1
+                0x0000000000000258                __vector_32
+                0x0000000000000258                __vector_34
+                0x0000000000000258                __vector_24
+                0x0000000000000258                __vector_12
+                0x0000000000000258                __bad_interrupt
+                0x0000000000000258                __vector_31
+                0x0000000000000258                __vector_35
+                0x0000000000000258                __vector_39
+                0x0000000000000258                __vector_3
+                0x0000000000000258                __vector_23
+                0x0000000000000258                __vector_30
+                0x0000000000000258                __vector_25
+                0x0000000000000258                __vector_11
+                0x0000000000000258                __vector_13
+                0x0000000000000258                __vector_17
+                0x0000000000000258                __vector_19
+                0x0000000000000258                __vector_7
+                0x0000000000000258                __vector_27
+                0x0000000000000258                __vector_5
+                0x0000000000000258                __vector_33
+                0x0000000000000258                __vector_37
+                0x0000000000000258                __vector_9
+                0x0000000000000258                __vector_2
+                0x0000000000000258                __vector_21
+                0x0000000000000258                __vector_15
+                0x0000000000000258                __vector_36
+                0x0000000000000258                __vector_29
+                0x0000000000000258                __vector_8
+                0x0000000000000258                __vector_26
+                0x0000000000000258                __vector_14
+                0x0000000000000258                __vector_10
+                0x0000000000000258                __vector_16
+                0x0000000000000258                __vector_18
+                0x0000000000000258                __vector_20
 
 .data.seven_segment_numbers
-                0x0000000000802800        0xb load address 0x0000000000000258
+                0x0000000000802800        0xb load address 0x000000000000025c
  .data.seven_segment_numbers
                 0x0000000000802800        0xb build/default/production/main.o
                 0x0000000000802800                seven_segment_numbers
 
 .data.g_running
-                0x000000000080280d        0x1 load address 0x0000000000000263
+                0x000000000080280d        0x1 load address 0x0000000000000267
  .data.g_running
                 0x000000000080280d        0x1 build/default/production/main.o
                 0x000000000080280d                g_running
