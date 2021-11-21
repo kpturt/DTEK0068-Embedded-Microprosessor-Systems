@@ -161,9 +161,8 @@ int main(void)
          * change the global pressed checker to true and make servo move*/
         if((LDR_value < PM_value) && !g_servo_press)
         {
-            g_servo_press = 1; // Change gloabal value and run isr
-            // Wait for the clock to stabilise
-            while(RTC.STATUS > 0)
+            g_servo_press = 1; // Change global value and run ISR changes
+            while(RTC.STATUS > 0) // Wait for the clock to stabilise
             {
                 ;
             }
@@ -190,7 +189,7 @@ ISR(RTC_CNT_vect)
     }
     else if(!g_servo_press)
     {
-        // Set servo position to neutral
+        // If servo is not moving set servo position to neutral
         TCA0.SINGLE.CMP2BUF = SERVO_PWM_DUTY_NEUTRAL;
     }
 }
