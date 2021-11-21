@@ -12,9 +12,9 @@
  * changes the sensitivity of the LDR and displays the PM value on the display.
  */
 
+#include <avr/io.h> 
 #define F_CPU  3333333   // For delay, sets 3.33 MHz clock frequency 
 #include <util/delay.h>
-#include <avr/io.h>
 
 // Macros for servo control
 #define SERVO_PWM_PERIOD        (0x1046) 
@@ -37,9 +37,6 @@ uint8_t seven_segment_numbers[] =
     0b01110111 // A
 };
 
-uint16_t LDR_value = 0; // Value for the the LDR read
-uint16_t PM_value = 0; // Value for the potentiometer read
-uint8_t digit_index = 0; // Display number index
 
 uint8_t ldr_read(void)
 {
@@ -55,10 +52,10 @@ uint8_t ldr_read(void)
     { 
         ; 
     }
-    LDR_value = ADC0.RES / 100; // Read and set LDR value, divide by 100 
+    return ADC0.RES / 100; // Read and set LDR value, divide by 100 
 }
 
- uint8_t pm_read(void)
+uint8_t pm_read(void)
 {
     ADC0.CTRLC |= ADC_REFSEL_INTREF_gc; // Set reference voltage to VDD (5V)
     ADC0.MUXPOS = ADC_MUXPOS_AIN14_gc; // // MUXPOS to read AIN14 = PF4 (PM)
@@ -71,11 +68,11 @@ uint8_t ldr_read(void)
     { 
         ; 
     }
-    PM_value = ADC0.RES / 100; // Read and set PM value, divide by 100
+    return ADC0.RES / 100; // Read and set PM value, divide by 100
 }
 
 int main(void) 
-{
+{   
     PORTC.DIRSET = 0xFF; // Sets PORTC (LED display) ports as outputs (1)
     PORTE.DIRCLR = PIN0_bm; // Set PE0 (LDR) as input (0)
     PORTF.DIRCLR = PIN4_bm; // Set PF4 (PM) as input (0)
@@ -110,8 +107,9 @@ int main(void)
     // Main superloop
     while(1)
     {   
-        ldr_read();
-        pm_read();
+        uint16_t LDR_value = ldr_read(); // Value for the the LDR read
+        uint16_t PM_value = pm_read(); // Value for the potentiometer read;
+        
         /* If LDR value is over the PM value, move the servo position to max,
          * otherwise set servo position to neutral (0 deg.) */
         if(LDR_value < PM_value)
@@ -130,7 +128,6 @@ int main(void)
         }
         
         // Changes display to a number representing the PM value
-        PORTC.OUT = seven_segment_numbers[PM_value];
-        
+        PORTC.OUT = seven_segment_numbers[PM_value]; 
     }
 }
