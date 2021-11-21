@@ -6,7 +6,8 @@
  * Target device: ATmega4809 Curiosity Nano
  * 
  * This program does the following: This program was designed to play the
- * "Chrome Dino game". When the LDR detects change in light, it makes the 
+ * light mode version of the "Chrome Dino game". 
+ * When the LDR detects change in light (a cactus), it makes the 
  * servo move tapping the space bar and making the dino jump. The PM value
  * changes the sensitivity of the LDR and displays the PM value on the display.
  */
@@ -36,6 +37,42 @@ uint8_t seven_segment_numbers[] =
     0b01110111 // A
 };
 
+uint16_t LDR_value = 0; // Value for the the LDR read
+uint16_t PM_value = 0; // Value for the potentiometer read
+uint8_t digit_index = 0; // Display number index
+
+uint8_t ldr_read(void)
+{
+    ADC0.CTRLC &= ~ADC_REFSEL_VDDREF_gc; // Clear REFSEL
+    ADC0.CTRLC |= ADC_REFSEL_VDDREF_gc; // Set reference voltage to (2.5V)
+    ADC0.MUXPOS = ADC_MUXPOS_AIN8_gc; // MUXPOS to read AIN8 = PE0 (LDR))
+    // Start conversion (bit cleared when conversion is done)
+    ADC0.COMMAND = ADC_STCONV_bm;
+    // When the conversion is done, the RESRDY bit in the ADC0.INTFLAGS 
+    // gets set by the hardware. Without interrupt handler, the program 
+    // must wait for that bit to get set before reading the ADC result. 
+    while (!(ADC0.INTFLAGS & ADC_RESRDY_bm)) 
+    { 
+        ; 
+    }
+    LDR_value = ADC0.RES / 100; // Read and set LDR value, divide by 100 
+}
+
+ uint8_t pm_read(void)
+{
+    ADC0.CTRLC |= ADC_REFSEL_INTREF_gc; // Set reference voltage to VDD (5V)
+    ADC0.MUXPOS = ADC_MUXPOS_AIN14_gc; // // MUXPOS to read AIN14 = PF4 (PM)
+    // Start conversion (bit cleared when conversion is done) 
+    ADC0.COMMAND = ADC_STCONV_bm;
+    // When the conversion is done, the RESRDY bit in the ADC0.INTFLAGS 
+    // gets set by the hardware. Without interrupt handler, the program 
+    // must wait for that bit to get set before reading the ADC result. 
+    while (!(ADC0.INTFLAGS & ADC_RESRDY_bm)) 
+    { 
+        ; 
+    }
+    PM_value = ADC0.RES / 100; // Read and set PM value, divide by 100
+}
 
 int main(void) 
 {
@@ -70,41 +107,11 @@ int main(void)
     // Enable TCA0 peripheral 
     TCA0.SINGLE.CTRLA |= TCA_SINGLE_ENABLE_bm;
     
-    uint8_t digit_index = 0; // Display number index
-    uint16_t PM_value = 0; // Value for the potentiometer read
-    uint16_t LDR_value = 0; // Value for the the LDR read
-    
     // Main superloop
     while(1)
     {   
-        
-        ADC0.CTRLC |= ADC_REFSEL_INTREF_gc; // Set reference voltage to VDD (5V)
-        ADC0.MUXPOS = ADC_MUXPOS_AIN14_gc; // // MUXPOS to read AIN14 = PF4 (PM)
-        // Start conversion (bit cleared when conversion is done) 
-        ADC0.COMMAND = ADC_STCONV_bm;
-        // When the conversion is done, the RESRDY bit in the ADC0.INTFLAGS 
-        // gets set by the hardware. Without interrupt handler, the program 
-        // must wait for that bit to get set before reading the ADC result. 
-        while (!(ADC0.INTFLAGS & ADC_RESRDY_bm)) 
-        { 
-            ; 
-        }
-        PM_value = ADC0.RES / 100; // Read and set PM value, divide by 100
-       
-        ADC0.CTRLC &= ~ADC_REFSEL_VDDREF_gc; // Clear REFSEL
-        ADC0.CTRLC |= ADC_REFSEL_VDDREF_gc; // Set reference voltage to (2.5V)
-        ADC0.MUXPOS = ADC_MUXPOS_AIN8_gc; // MUXPOS to read AIN8 = PE0 (LDR))
-        // Start conversion (bit cleared when conversion is done)
-        ADC0.COMMAND = ADC_STCONV_bm;
-        // When the conversion is done, the RESRDY bit in the ADC0.INTFLAGS 
-        // gets set by the hardware. Without interrupt handler, the program 
-        // must wait for that bit to get set before reading the ADC result. 
-        while (!(ADC0.INTFLAGS & ADC_RESRDY_bm)) 
-        { 
-            ; 
-        }
-        LDR_value = ADC0.RES / 100; // Read and set LDR value, divide by 100 
-        
+        ldr_read();
+        pm_read();
         /* If LDR value is over the PM value, move the servo position to max,
          * otherwise set servo position to neutral (0 deg.) */
         if(LDR_value < PM_value)
