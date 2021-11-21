@@ -6,6 +6,8 @@ f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(
                               build/default/production/main.o (__do_copy_data)
 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_umulhisi3.o)
                               build/default/production/main.o (__umulhisi3)
+F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
+                              build/default/production/main.o (ccp_write_io)
 
 Discarded input sections
 
@@ -64,6 +66,11 @@ Discarded input sections
                 0x0000000000000000        0x0 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_umulhisi3.o)
  .text.libgcc.fixed
                 0x0000000000000000        0x0 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_umulhisi3.o)
+ .text          0x0000000000000000        0x0 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
+ .data          0x0000000000000000        0x0 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
+ .bss           0x0000000000000000        0x0 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
+ .stack.descriptors
+                0x0000000000000000       0x1a F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
 
 Memory Configuration
 
@@ -194,7 +201,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000       0xfc
+.text           0x0000000000000000      0x100
  *(.vectors)
  .vectors       0x0000000000000000       0xa0 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
                 0x0000000000000000                __vector_default
@@ -202,44 +209,43 @@ END GROUP
  *(.vectors)
  *(.progmem.gcc*)
  *(.dinit)
- .dinit         0x00000000000000a0        0x7 data_init
-                0x00000000000000a8                . = ALIGN (0x2)
- *fill*         0x00000000000000a7        0x1 
-                0x00000000000000a8                __trampolines_start = .
+ .dinit         0x00000000000000a0        0xc data_init
+                0x00000000000000ac                . = ALIGN (0x2)
+                0x00000000000000ac                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000000000000a8        0x0 linker stubs
+ .trampolines   0x00000000000000ac        0x0 linker stubs
  *(.trampolines*)
-                0x00000000000000a8                __trampolines_end = .
+                0x00000000000000ac                __trampolines_end = .
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
-                0x00000000000000a8                . = ALIGN (0x2)
+                0x00000000000000ac                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000000000000a8                __ctors_start = .
+                0x00000000000000ac                __ctors_start = .
  *(.ctors)
-                0x00000000000000a8                __ctors_end = .
-                0x00000000000000a8                __dtors_start = .
+                0x00000000000000ac                __ctors_end = .
+                0x00000000000000ac                __dtors_start = .
  *(.dtors)
-                0x00000000000000a8                __dtors_end = .
+                0x00000000000000ac                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000000000000a8        0x0 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
-                0x00000000000000a8                __init
+ .init0         0x00000000000000ac        0x0 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
+                0x00000000000000ac                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000000000000a8        0xc F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
+ .init2         0x00000000000000ac        0xc F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000000000000b4       0x3c f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_copy_data.o)
-                0x00000000000000b4                __do_copy_data
-                0x00000000000000e2                __do_clear_bss
+ .init4         0x00000000000000b8       0x3c f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_copy_data.o)
+                0x00000000000000b8                __do_copy_data
+                0x00000000000000e6                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -250,13 +256,13 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000000000000f0        0x8 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
+ .init9         0x00000000000000f4        0x8 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  *(.init9)
-                0x00000000000000f8                . = ALIGN (0x2)
+                0x00000000000000fc                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000000000000f8        0x0 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
-                0x00000000000000f8                _exit
-                0x00000000000000f8                exit
+ .fini9         0x00000000000000fc        0x0 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
+                0x00000000000000fc                _exit
+                0x00000000000000fc                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -275,11 +281,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000000000000f8        0x4 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
+ .fini0         0x00000000000000fc        0x4 f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000000fc                _etext = .
+                0x0000000000000100                _etext = .
 
-.data           0x0000000000802800        0x0 load address 0x00000000000000fc
+.data           0x0000000000802800        0x0 load address 0x0000000000000100
                 [!provide]                        PROVIDE (__data_start, .)
  *(.gnu.linkonce.d*)
                 0x0000000000802800                . = ALIGN (0x2)
@@ -290,8 +296,8 @@ END GROUP
                 [!provide]                        PROVIDE (__bss_start, .)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end, .)
-                0x00000000000000fc                __data_load_start = LOADADDR (.data)
-                0x00000000000000fc                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000000100                __data_load_start = LOADADDR (.data)
+                0x0000000000000100                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000802800        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
@@ -342,11 +348,13 @@ END GROUP
                                          0x30 (size before relaxing)
 
 .stack.descriptors.hdr
-                0x0000000000000000       0x1c
+                0x0000000000000000       0x2a
  .stack.descriptors.hdr
                 0x0000000000000000        0xe f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
  .stack.descriptors.hdr
                 0x000000000000000e        0xe f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_umulhisi3.o)
+ .stack.descriptors.hdr
+                0x000000000000001c        0xe F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
 
 .note.gnu.build-id
  *(.note.gnu.build-id)
@@ -363,41 +371,46 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000       0x30
+.debug_aranges  0x0000000000000000       0x60
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x30 build/default/production/main.o
+                0x0000000000000000       0x40 build/default/production/main.o
+ .debug_aranges
+                0x0000000000000040       0x20 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x396e
+.debug_info     0x0000000000000000     0x3db3
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000     0x248a F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
- .debug_info    0x000000000000248a     0x14e4 build/default/production/main.o
+ .debug_info    0x000000000000248a     0x1887 build/default/production/main.o
+ .debug_info    0x0000000000003d11       0xa2 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
 
-.debug_abbrev   0x0000000000000000     0x24b7
+.debug_abbrev   0x0000000000000000     0x24d6
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000     0x2296 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
- .debug_abbrev  0x0000000000002296      0x221 build/default/production/main.o
+ .debug_abbrev  0x0000000000002296      0x22c build/default/production/main.o
+ .debug_abbrev  0x00000000000024c2       0x14 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
 
-.debug_line     0x0000000000000000      0x3b6
+.debug_line     0x0000000000000000      0x4e4
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x187 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
- .debug_line    0x0000000000000187      0x22f build/default/production/main.o
+ .debug_line    0x0000000000000187      0x2f6 build/default/production/main.o
+ .debug_line    0x000000000000047d       0x67 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
 
-.debug_frame    0x0000000000000000       0x44
+.debug_frame    0x0000000000000000       0x84
  *(.debug_frame)
- .debug_frame   0x0000000000000000       0x44 build/default/production/main.o
+ .debug_frame   0x0000000000000000       0x84 build/default/production/main.o
 
-.debug_str      0x0000000000000000      0xff3
+.debug_str      0x0000000000000000     0x1000
  *(.debug_str)
  .debug_str     0x0000000000000000      0xf85 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
- .debug_str     0x0000000000000f85       0x6e build/default/production/main.o
+ .debug_str     0x0000000000000f85       0x7b build/default/production/main.o
 
-.debug_loc      0x0000000000000000       0xbb
+.debug_loc      0x0000000000000000       0x58
  *(.debug_loc)
- .debug_loc     0x0000000000000000       0xbb build/default/production/main.o
+ .debug_loc     0x0000000000000000       0x58 build/default/production/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -417,9 +430,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000       0x20
+.debug_ranges   0x0000000000000000       0x30
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x20 build/default/production/main.o
+ .debug_ranges  0x0000000000000000       0x30 build/default/production/main.o
 
 .debug_macro
  *(.debug_macro)
@@ -432,70 +445,90 @@ LOAD data_init
  .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x40 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
 
-.text.main      0x00000000000000fc       0xdc
- .text.main     0x00000000000000fc       0xdc build/default/production/main.o
-                0x00000000000000fc                main
+.bss.g_servo_press
+                0x000000000080280b        0x1
+ .bss.g_servo_press
+                0x000000000080280b        0x1 build/default/production/main.o
+                0x000000000080280b                g_servo_press
 
-.text.ldr_read  0x00000000000001d8       0x3c
+.text.main      0x0000000000000100       0xc6
+ .text.main     0x0000000000000100       0xc6 build/default/production/main.o
+                0x0000000000000100                main
+
+.text.rtc_init  0x00000000000001c6       0x5a
+ .text.rtc_init
+                0x00000000000001c6       0x5a build/default/production/main.o
+                0x00000000000001c6                rtc_init
+
+.text.__vector_3
+                0x0000000000000220       0x50
+ .text.__vector_3
+                0x0000000000000220       0x50 build/default/production/main.o
+                0x0000000000000220                __vector_3
+
+.text.ldr_read  0x0000000000000270       0x3c
  .text.ldr_read
-                0x00000000000001d8       0x3c build/default/production/main.o
-                0x00000000000001d8                ldr_read
+                0x0000000000000270       0x3c build/default/production/main.o
+                0x0000000000000270                ldr_read
 
-.text.pm_read   0x0000000000000214       0x34
- .text.pm_read  0x0000000000000214       0x34 build/default/production/main.o
-                0x0000000000000214                pm_read
+.text.pm_read   0x00000000000002ac       0x34
+ .text.pm_read  0x00000000000002ac       0x34 build/default/production/main.o
+                0x00000000000002ac                pm_read
 
 .text.libgcc.mul
-                0x0000000000000248       0x1e
+                0x00000000000002e0       0x1e
  .text.libgcc.mul
-                0x0000000000000248       0x1e f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_umulhisi3.o)
-                0x0000000000000248                __umulhisi3
+                0x00000000000002e0       0x1e f:/ohjelmat/microchip/xc8/v2.32/avr/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_umulhisi3.o)
+                0x00000000000002e0                __umulhisi3
 
-.text           0x0000000000000266        0x4
- .text          0x0000000000000266        0x4 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
-                0x0000000000000266                __vector_38
-                0x0000000000000266                __vector_22
-                0x0000000000000266                __vector_28
-                0x0000000000000266                __vector_1
-                0x0000000000000266                __vector_32
-                0x0000000000000266                __vector_34
-                0x0000000000000266                __vector_24
-                0x0000000000000266                __vector_12
-                0x0000000000000266                __bad_interrupt
-                0x0000000000000266                __vector_6
-                0x0000000000000266                __vector_31
-                0x0000000000000266                __vector_35
-                0x0000000000000266                __vector_39
-                0x0000000000000266                __vector_3
-                0x0000000000000266                __vector_23
-                0x0000000000000266                __vector_30
-                0x0000000000000266                __vector_25
-                0x0000000000000266                __vector_11
-                0x0000000000000266                __vector_13
-                0x0000000000000266                __vector_17
-                0x0000000000000266                __vector_19
-                0x0000000000000266                __vector_7
-                0x0000000000000266                __vector_27
-                0x0000000000000266                __vector_5
-                0x0000000000000266                __vector_33
-                0x0000000000000266                __vector_37
-                0x0000000000000266                __vector_4
-                0x0000000000000266                __vector_9
-                0x0000000000000266                __vector_2
-                0x0000000000000266                __vector_21
-                0x0000000000000266                __vector_15
-                0x0000000000000266                __vector_36
-                0x0000000000000266                __vector_29
-                0x0000000000000266                __vector_8
-                0x0000000000000266                __vector_26
-                0x0000000000000266                __vector_14
-                0x0000000000000266                __vector_10
-                0x0000000000000266                __vector_16
-                0x0000000000000266                __vector_18
-                0x0000000000000266                __vector_20
+.text.avrlibc   0x00000000000002fe        0xc
+ .text.avrlibc  0x00000000000002fe        0xc F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3\libatmega4809.a(ccp_write.o)
+                0x00000000000002fe                ccp_write_io
+
+.text           0x000000000000030a        0x4
+ .text          0x000000000000030a        0x4 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
+                0x000000000000030a                __vector_38
+                0x000000000000030a                __vector_22
+                0x000000000000030a                __vector_28
+                0x000000000000030a                __vector_1
+                0x000000000000030a                __vector_32
+                0x000000000000030a                __vector_34
+                0x000000000000030a                __vector_24
+                0x000000000000030a                __vector_12
+                0x000000000000030a                __bad_interrupt
+                0x000000000000030a                __vector_6
+                0x000000000000030a                __vector_31
+                0x000000000000030a                __vector_35
+                0x000000000000030a                __vector_39
+                0x000000000000030a                __vector_23
+                0x000000000000030a                __vector_30
+                0x000000000000030a                __vector_25
+                0x000000000000030a                __vector_11
+                0x000000000000030a                __vector_13
+                0x000000000000030a                __vector_17
+                0x000000000000030a                __vector_19
+                0x000000000000030a                __vector_7
+                0x000000000000030a                __vector_27
+                0x000000000000030a                __vector_5
+                0x000000000000030a                __vector_33
+                0x000000000000030a                __vector_37
+                0x000000000000030a                __vector_4
+                0x000000000000030a                __vector_9
+                0x000000000000030a                __vector_2
+                0x000000000000030a                __vector_21
+                0x000000000000030a                __vector_15
+                0x000000000000030a                __vector_36
+                0x000000000000030a                __vector_29
+                0x000000000000030a                __vector_8
+                0x000000000000030a                __vector_26
+                0x000000000000030a                __vector_14
+                0x000000000000030a                __vector_10
+                0x000000000000030a                __vector_16
+                0x000000000000030a                __vector_18
+                0x000000000000030a                __vector_20
 
 .data.seven_segment_numbers
-                0x0000000000802800        0xb load address 0x000000000000026a
+                0x0000000000802800        0xb load address 0x000000000000030e
  .data.seven_segment_numbers
                 0x0000000000802800        0xb build/default/production/main.o
                 0x0000000000802800                seven_segment_numbers

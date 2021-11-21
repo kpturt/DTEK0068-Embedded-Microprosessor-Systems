@@ -11,9 +11,8 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\xmega.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\lock.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\math.h
+ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h \
+ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\cpufunc.h
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -39,8 +38,6 @@ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h:
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\lock.h:
 
-f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay.h:
+f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h:
 
-f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h:
-
-f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\math.h:
+f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\cpufunc.h:
