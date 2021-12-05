@@ -193,3 +193,35 @@ ISR(RTC_CNT_vect)
         TCA0.SINGLE.CMP2BUF = SERVO_PWM_DUTY_NEUTRAL;
     }
 }
+
+
+
+void send_message(void* parameter)
+{
+    
+}
+
+void receive_message(void* parameter)
+{
+    
+}
+
+// Create a task for sending messages
+    xTaskCreate(
+        send_message,
+        "send_msg",
+        configMINIMAL_STACK_SIZE,
+        NULL,
+        tskIDLE_PRIORITY,
+        NULL
+    );
+    
+    // Create a task for receiving messages
+    xTaskCreate(
+        receive_message,
+        "receive_msg",
+        configMINIMAL_STACK_SIZE,
+        NULL,
+        tskIDLE_PRIORITY,
+        NULL
+    );

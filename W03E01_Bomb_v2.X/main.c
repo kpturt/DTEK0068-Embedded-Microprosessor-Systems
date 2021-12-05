@@ -169,6 +169,6 @@ ISR(RTC_PIT_vect)
     {
         g_clockticks += 1;
         counter = 0;
-    }   
+    }
 }
 
