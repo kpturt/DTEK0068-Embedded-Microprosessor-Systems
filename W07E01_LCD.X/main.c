@@ -23,8 +23,8 @@
 #include <stdio.h>
 
 #include <semphr.h>//For mutex
-#include <avr/interrupt.h> // For interrupts and sei() + cli()
-#include <avr/cpufunc.h> // To enable CCP register change
+#include <avr/interrupt.h> // For interrupts and sei() + cli() (not needed?)
+#include <avr/cpufunc.h> // To enable CCP register change (not needed?)
 
 #include "uart.h"
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
@@ -33,8 +33,7 @@
 #include "display.h"
 #include "dummy.h"
 
-// Initialize functions
-
+// Initialise functions
 void clock_init (void);
 void tcb_init (void);
 
@@ -43,12 +42,17 @@ SemaphoreHandle_t mutex_handle; // Global mutex
 // Function to intialise clock, probably not needed
 void clock_init(void)
 {
-    CPU_CCP = CCP_IOREG_gc; //Enable writing to protected register
-    CLKCTRL.MCLKCTRLB = CLKCTRL_PDIV_64X_gc | CLKCTRL_PEN_bm; // Enable prescaler, set PDIV to 64 divider
-    CPU_CCP = CCP_IOREG_gc; //Enable writing to protected register
-    CLKCTRL.MCLKCTRLA = CLKCTRL_CLKSEL_OSCULP32K_gc; // Select OSCULP32K and set to 0x1 value
+    //Enable writing to protected register
+    CPU_CCP = CCP_IOREG_gc;
+    // Enable prescaler, set PDIV to 64 divider
+    CLKCTRL.MCLKCTRLB = CLKCTRL_PDIV_64X_gc | CLKCTRL_PEN_bm;
+    //Enable writing to protected register
+    CPU_CCP = CCP_IOREG_gc;
+    // Select OSCULP32K and set to 0x1 value
+    CLKCTRL.MCLKCTRLA = CLKCTRL_CLKSEL_OSCULP32K_gc;
     
-    while (CLKCTRL.MCLKSTATUS & CLKCTRL_SOSC_bm) // Wait for the oscillator to finish
+    // Wait for the oscillator to finish
+    while (CLKCTRL.MCLKSTATUS & CLKCTRL_SOSC_bm)
     {
         ;
     }
@@ -63,14 +67,16 @@ void tcb_init(void)
     
     TCB3.CCMP = 0x80FF; // Enable to generate 8bit PWM signal
     TCB3.CTRLA |= TCB_ENABLE_bm; // Enable TCB3
-    TCB3.CTRLA |= TCB_CLKSEL_CLKDIV2_gc; // Divide CLK_PER by 2 to get lowest frequency
+    // Divide CLK_PER by 2 to get lowest frequency
+    TCB3.CTRLA |= TCB_CLKSEL_CLKDIV2_gc;
     TCB3.CTRLB |= TCB_CCMPEN_bm; // Enable pin output
     TCB3.CTRLB |= TCB_CNTMODE_PWM8_gc; // Configure TCB to 8 bit mode
 }
 
 int main(void)
 {
-    mutex_handle = xSemaphoreCreateMutex(); // Create mutex before starting tasks
+    // Create mutex before starting tasks
+    mutex_handle = xSemaphoreCreateMutex();
     usart_init(); // Initialise USART
     tcb_init(); // Initialise TCB3
     

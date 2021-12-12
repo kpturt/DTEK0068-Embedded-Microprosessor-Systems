@@ -1,6 +1,6 @@
 /* 
  * File:   display.h
- * Author: kptur
+ * Author: Kari-Pekka Turtiainen / kpturt@utu.fi
  *
  * Created on 12 December 2021, 17:19
  */
@@ -12,6 +12,7 @@
 extern "C" {
 #endif
 
+// Initialisations
 void display_task(void *parameters);
 QueueHandle_t lcd_queue;
 

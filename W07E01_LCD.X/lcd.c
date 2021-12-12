@@ -253,12 +253,16 @@ void scroll_timer_callback()
     }
 }
 
+// Function for lcd task
 void lcd_task(void *parameters)
 {
-    lcd_init(); // Initialize lcd
+    // Initializations
+    lcd_init();
     direction = 0;
     leftmost_char = 0;
+    ADC_result_t adc_results;
     
+    // Function for display time timer
     TimerHandle_t display_time = xTimerCreate(
         "timer",
         660, // 660 ms
@@ -267,6 +271,7 @@ void lcd_task(void *parameters)
         display_timer_callback
     );
     
+    // Function for scroll time
     TimerHandle_t scroll_time = xTimerCreate(
         "scroll",
         200, // 200 ms
@@ -288,7 +293,6 @@ void lcd_task(void *parameters)
     //ntc_value = ntc_read();
     //pm_value = pm_read();
     
-    ADC_result_t adc_results;
     for(;;)
     {
         if(xQueueReceive(lcd_queue, &adc_results, 100) == pdTRUE)

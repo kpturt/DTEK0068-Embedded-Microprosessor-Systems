@@ -12,7 +12,7 @@
 #define USART0_BAUD_RATE(BAUD_RATE) \
 ((float)(configCPU_CLOCK_HZ * 64 / (16 * (float)BAUD_RATE)) + 0.5)
 
-// Initialize functions
+// Initialisations
 void usart_init(void);
 void usart_send_char(char c);
 void usart_send_string(char *str);

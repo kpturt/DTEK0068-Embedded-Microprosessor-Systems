@@ -1,18 +1,29 @@
+/* 
+ * File:   backlight.c
+ * Author: Kari-Pekka Turtiainen / kpturt@utu.fi
+ *
+ * Created on 12 December 2021, 16:15
+ */
+
 #include <avr/io.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
 #include "timers.h"
 
+// Initialisations
 ADC_result_t adc_result;
 uint16_t last_pm;
 TimerHandle_t backlight_time;
 
+// Function for backlight timer callback
 void backlight_timer_callback()
 {
     uint16_t ratio = adc_result.ldr*10/1023;
     TCB3.CCMP = 0xFFFF - (0xFFFF/10*ratio);
 }
+
+// Function for timeout timer callback
 void timeout_timer_callback()
 {
     if(xTimerIsTimerActive(backlight_time) == pdTRUE)
@@ -22,8 +33,10 @@ void timeout_timer_callback()
     TCB3.CCMP = 0;
 }
 
+// Function for backlight task
 void backlight_task(void *parameters)
 {
+    // Timer for backlight time
     backlight_time = xTimerCreate(
         "backlight",
         100,
@@ -31,6 +44,7 @@ void backlight_task(void *parameters)
         ( void * ) 3,
         backlight_timer_callback
     );
+    // Timer for timeout
     TimerHandle_t timeout_time = xTimerCreate(
         "timeout",
         10000,
@@ -44,10 +58,11 @@ void backlight_task(void *parameters)
     
     for(;;)
     {
-        xSemaphoreTake(mutex_handle, 100);
-        adc_result = read_adc_values();
-        xSemaphoreGive(mutex_handle);
+        xSemaphoreTake(mutex_handle, 100); // Take mutex
+        adc_result = read_adc_values(); // Read adc values
+        xSemaphoreGive(mutex_handle); // Give mutex
         
+        // If pm value equals and timeout is not on, start timeout
         if(last_pm == adc_result.pm)
         {
             if(xTimerIsTimerActive(timeout_time) == pdFALSE)
@@ -55,6 +70,9 @@ void backlight_task(void *parameters)
                 xTimerStart(timeout_time, 0);
             }
         }
+        /* Else if backoutlight is not on, start it
+         * or if timer is on, stop it
+         */
         else{
             if(xTimerIsTimerActive(backlight_time) == pdFALSE)
             {

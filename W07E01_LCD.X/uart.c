@@ -1,3 +1,10 @@
+/* 
+ * File:   uart.c
+ * Author: Kari-Pekka Turtiainen / kpturt@utu.fi
+ *
+ * Created on 12 December 2021, 13:06
+ */
+
 #include <avr/io.h>
 #include <string.h>
 #include <stdio.h>
@@ -56,17 +63,18 @@ void usart_task(void* parameters)
     char pm_value_string[800];
     
     ADC_result_t output_buffer; // Store value from output queue
-    //char ldr_str[12];
+    
+    vTaskDelay(200);
     
     // This task will run indefinitely
     for (;;)
     {
-        xSemaphoreTake(mutex_handle, 100);
+        xSemaphoreTake(mutex_handle, 100); // Take mutex
         //ldr_value = ldr_read();
         //ntc_value = ntc_read();
         //pm_value = pm_read();
         output_buffer = read_adc_values();
-        xSemaphoreGive(mutex_handle);
+        xSemaphoreGive(mutex_handle); // Give mutex
         
         sprintf(ldr_value_string, "LDR value: (%d) ", output_buffer.ldr);
         sprintf(ntc_value_string, "NTC value: (%d) ", output_buffer.ntc);
@@ -76,7 +84,7 @@ void usart_task(void* parameters)
         usart_send_string(ntc_value_string);
         usart_send_string(pm_value_string);
         
-       vTaskDelay(100 / portTICK_PERIOD_MS); //100ms or 1/10 second delay
+       //vTaskDelay(100 / portTICK_PERIOD_MS); //100ms or 1/10 second delay
     }
     // Above loop will not end, but as a practice, tasks should always include
     // a vTaskDelete() call just-in-case

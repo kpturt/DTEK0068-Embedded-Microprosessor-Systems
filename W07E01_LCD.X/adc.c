@@ -1,3 +1,10 @@
+/* 
+ * File:   adc.c
+ * Author: Kari-Pekka Turtiainen / kpturt@utu.fi
+ *
+ * Created on 12 December 2021, 14:53
+ */
+
 #include <avr/io.h>
 #include "FreeRTOS.h"
 #include <semphr.h>//For mutex
@@ -52,6 +59,7 @@ uint16_t pm_read(void)
     return ADC0.RES; // Read and return PM value
 }
 
+// Function to read and set adc values
 ADC_result_t read_adc_values()
 {
     ADC_result_t adc_result;

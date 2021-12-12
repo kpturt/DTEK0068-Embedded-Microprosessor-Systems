@@ -1,9 +1,10 @@
 /* 
  * File:   display.c
- * Author: kptur
+ * Author: Kari-Pekka Turtiainen / kpturt@utu.fi
  *
  * Created on 12 December 2021, 17:17
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "FreeRTOS.h" 
@@ -13,18 +14,20 @@
 #include "display.h"
 #include "uart.h"
 
+// Function for display task
 void display_task(void *parameters)
 {
+    // Initialisations
     ADC_result_t adc_results;
     
     vTaskDelay(200);
     
     for(;;)
     {
-        xSemaphoreTake(mutex_handle, 100);
-        adc_results = read_adc_values();
-        xQueueOverwrite(lcd_queue, &adc_results);
-        xSemaphoreGive(mutex_handle);
+        xSemaphoreTake(mutex_handle, 100); // Take mutex
+        adc_results = read_adc_values(); // Read adc values
+        xQueueOverwrite(lcd_queue, &adc_results); // Add new items to queue
+        xSemaphoreGive(mutex_handle); // Give mutex
         vTaskDelay(100);
     }
     

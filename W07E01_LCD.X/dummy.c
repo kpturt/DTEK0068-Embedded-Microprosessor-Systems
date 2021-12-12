@@ -1,6 +1,6 @@
 /* 
  * File:   dummy.c
- * Author: kptur
+ * Author: Kari-Pekka Turtiainen / kpturt@utu.fi
  *
  * Created on 12 December 2021, 17:48
  */
@@ -15,11 +15,14 @@
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
 #include "task.h"
 
+// Function for led timer callback
 void led_timer_callback()
 {
-    xSemaphoreTake(mutex_handle, 100);
-    ADC_result_t adc_result = read_adc_values();
-    xSemaphoreGive(mutex_handle);
+    xSemaphoreTake(mutex_handle, 100); // Take mutex
+    ADC_result_t adc_result = read_adc_values(); // read adc
+    xSemaphoreGive(mutex_handle); // Give mutex
+    
+    // This changes the led on/off depending on if NTC > PM value
     if(adc_result.ntc > adc_result.pm)
     {
         PORTF.OUTSET = PIN5_bm;
@@ -30,10 +33,12 @@ void led_timer_callback()
     }
 }
 
+// Function for dummy task
 void dummy_task(void *parameters)
 {
     PORTF.DIRSET = PIN5_bm; // Sets PF5 (LED) as output (1)
     
+    // Create timer for led
     TimerHandle_t led_timer = xTimerCreate(
         "led",
         100,

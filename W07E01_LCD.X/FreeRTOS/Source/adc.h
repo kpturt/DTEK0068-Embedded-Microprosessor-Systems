@@ -10,9 +10,6 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 
-// Initialise mutex
-SemaphoreHandle_t mutex_handle;
-
 // Initialise result data types
 typedef struct {
     uint16_t ldr;
@@ -20,12 +17,13 @@ typedef struct {
     uint16_t pm;
 }ADC_result_t;
 
-// Initialise functions
+// Initialisations
 void adc_init(void);
 uint16_t ldr_read(void);
 uint16_t ntc_read(void);
 uint16_t pm_read(void);
 ADC_result_t read_adc_values();
+SemaphoreHandle_t mutex_handle;
 
 #endif	/* ADC_H */
 
