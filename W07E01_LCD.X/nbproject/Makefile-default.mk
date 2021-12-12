@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=FreeRTOS/Source/list.c FreeRTOS/Source/queue.c FreeRTOS/Source/tasks.c FreeRTOS/Source/timers.c FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.c FreeRTOS/Source/portable/MemMang/heap_1.c main.c uart.c
+SOURCEFILES_QUOTED_IF_SPACED=FreeRTOS/Source/list.c FreeRTOS/Source/queue.c FreeRTOS/Source/tasks.c FreeRTOS/Source/timers.c FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.c FreeRTOS/Source/portable/MemMang/heap_1.c main.c uart.c lcd.c adc.c backlight.c display.c dummy.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/FreeRTOS/Source/list.o ${OBJECTDIR}/FreeRTOS/Source/queue.o ${OBJECTDIR}/FreeRTOS/Source/tasks.o ${OBJECTDIR}/FreeRTOS/Source/timers.o ${OBJECTDIR}/FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.o ${OBJECTDIR}/FreeRTOS/Source/portable/MemMang/heap_1.o ${OBJECTDIR}/main.o ${OBJECTDIR}/uart.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/FreeRTOS/Source/list.o.d ${OBJECTDIR}/FreeRTOS/Source/queue.o.d ${OBJECTDIR}/FreeRTOS/Source/tasks.o.d ${OBJECTDIR}/FreeRTOS/Source/timers.o.d ${OBJECTDIR}/FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.o.d ${OBJECTDIR}/FreeRTOS/Source/portable/MemMang/heap_1.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/uart.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/FreeRTOS/Source/list.o ${OBJECTDIR}/FreeRTOS/Source/queue.o ${OBJECTDIR}/FreeRTOS/Source/tasks.o ${OBJECTDIR}/FreeRTOS/Source/timers.o ${OBJECTDIR}/FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.o ${OBJECTDIR}/FreeRTOS/Source/portable/MemMang/heap_1.o ${OBJECTDIR}/main.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/lcd.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/backlight.o ${OBJECTDIR}/display.o ${OBJECTDIR}/dummy.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/FreeRTOS/Source/list.o.d ${OBJECTDIR}/FreeRTOS/Source/queue.o.d ${OBJECTDIR}/FreeRTOS/Source/tasks.o.d ${OBJECTDIR}/FreeRTOS/Source/timers.o.d ${OBJECTDIR}/FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.o.d ${OBJECTDIR}/FreeRTOS/Source/portable/MemMang/heap_1.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/uart.o.d ${OBJECTDIR}/lcd.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/backlight.o.d ${OBJECTDIR}/display.o.d ${OBJECTDIR}/dummy.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/FreeRTOS/Source/list.o ${OBJECTDIR}/FreeRTOS/Source/queue.o ${OBJECTDIR}/FreeRTOS/Source/tasks.o ${OBJECTDIR}/FreeRTOS/Source/timers.o ${OBJECTDIR}/FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.o ${OBJECTDIR}/FreeRTOS/Source/portable/MemMang/heap_1.o ${OBJECTDIR}/main.o ${OBJECTDIR}/uart.o
+OBJECTFILES=${OBJECTDIR}/FreeRTOS/Source/list.o ${OBJECTDIR}/FreeRTOS/Source/queue.o ${OBJECTDIR}/FreeRTOS/Source/tasks.o ${OBJECTDIR}/FreeRTOS/Source/timers.o ${OBJECTDIR}/FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.o ${OBJECTDIR}/FreeRTOS/Source/portable/MemMang/heap_1.o ${OBJECTDIR}/main.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/lcd.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/backlight.o ${OBJECTDIR}/display.o ${OBJECTDIR}/dummy.o
 
 # Source Files
-SOURCEFILES=FreeRTOS/Source/list.c FreeRTOS/Source/queue.c FreeRTOS/Source/tasks.c FreeRTOS/Source/timers.c FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.c FreeRTOS/Source/portable/MemMang/heap_1.c main.c uart.c
+SOURCEFILES=FreeRTOS/Source/list.c FreeRTOS/Source/queue.c FreeRTOS/Source/tasks.c FreeRTOS/Source/timers.c FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/port.c FreeRTOS/Source/portable/MemMang/heap_1.c main.c uart.c lcd.c adc.c backlight.c display.c dummy.c
 
 
 
@@ -142,6 +142,36 @@ ${OBJECTDIR}/uart.o: uart.c  .generated_files/flags/default/1fc983bff64ce8b1ce75
 	@${RM} ${OBJECTDIR}/uart.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/uart.o.d" -MT "${OBJECTDIR}/uart.o.d" -MT ${OBJECTDIR}/uart.o -o ${OBJECTDIR}/uart.o uart.c 
 	
+${OBJECTDIR}/lcd.o: lcd.c  .generated_files/flags/default/98d920acd9da16b16e4f48675cbf68dc72437ba4 .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/lcd.o.d 
+	@${RM} ${OBJECTDIR}/lcd.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/lcd.o.d" -MT "${OBJECTDIR}/lcd.o.d" -MT ${OBJECTDIR}/lcd.o -o ${OBJECTDIR}/lcd.o lcd.c 
+	
+${OBJECTDIR}/adc.o: adc.c  .generated_files/flags/default/7c63f549e924b81a8d386890aed84b1911db364f .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/adc.o.d 
+	@${RM} ${OBJECTDIR}/adc.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/adc.o.d" -MT "${OBJECTDIR}/adc.o.d" -MT ${OBJECTDIR}/adc.o -o ${OBJECTDIR}/adc.o adc.c 
+	
+${OBJECTDIR}/backlight.o: backlight.c  .generated_files/flags/default/a4cb1d270900b88c8a38593ed42baf11e8bae600 .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/backlight.o.d 
+	@${RM} ${OBJECTDIR}/backlight.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/backlight.o.d" -MT "${OBJECTDIR}/backlight.o.d" -MT ${OBJECTDIR}/backlight.o -o ${OBJECTDIR}/backlight.o backlight.c 
+	
+${OBJECTDIR}/display.o: display.c  .generated_files/flags/default/b4020180868a34229e934a42e9aa745c2af2525b .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/display.o.d 
+	@${RM} ${OBJECTDIR}/display.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/display.o.d" -MT "${OBJECTDIR}/display.o.d" -MT ${OBJECTDIR}/display.o -o ${OBJECTDIR}/display.o display.c 
+	
+${OBJECTDIR}/dummy.o: dummy.c  .generated_files/flags/default/f5632e754559a92bc34928ccfaa53edac5d88de5 .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/dummy.o.d 
+	@${RM} ${OBJECTDIR}/dummy.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/dummy.o.d" -MT "${OBJECTDIR}/dummy.o.d" -MT ${OBJECTDIR}/dummy.o -o ${OBJECTDIR}/dummy.o dummy.c 
+	
 else
 ${OBJECTDIR}/FreeRTOS/Source/list.o: FreeRTOS/Source/list.c  .generated_files/flags/default/58916f35e9c37d05d5ba6e3d8f881978e49bd7e4 .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
 	@${MKDIR} "${OBJECTDIR}/FreeRTOS/Source" 
@@ -190,6 +220,36 @@ ${OBJECTDIR}/uart.o: uart.c  .generated_files/flags/default/5387b987b46e6be56589
 	@${RM} ${OBJECTDIR}/uart.o.d 
 	@${RM} ${OBJECTDIR}/uart.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/uart.o.d" -MT "${OBJECTDIR}/uart.o.d" -MT ${OBJECTDIR}/uart.o -o ${OBJECTDIR}/uart.o uart.c 
+	
+${OBJECTDIR}/lcd.o: lcd.c  .generated_files/flags/default/340b071c924aa2dc5eed32a15619e6da74e5e9b1 .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/lcd.o.d 
+	@${RM} ${OBJECTDIR}/lcd.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/lcd.o.d" -MT "${OBJECTDIR}/lcd.o.d" -MT ${OBJECTDIR}/lcd.o -o ${OBJECTDIR}/lcd.o lcd.c 
+	
+${OBJECTDIR}/adc.o: adc.c  .generated_files/flags/default/2701c6c0a79bb3d5dfac9f879cc1edda5ab83ad3 .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/adc.o.d 
+	@${RM} ${OBJECTDIR}/adc.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/adc.o.d" -MT "${OBJECTDIR}/adc.o.d" -MT ${OBJECTDIR}/adc.o -o ${OBJECTDIR}/adc.o adc.c 
+	
+${OBJECTDIR}/backlight.o: backlight.c  .generated_files/flags/default/d7f5f93c71fbac11d8b0b1a0984d8c0d1b3bd0ac .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/backlight.o.d 
+	@${RM} ${OBJECTDIR}/backlight.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/backlight.o.d" -MT "${OBJECTDIR}/backlight.o.d" -MT ${OBJECTDIR}/backlight.o -o ${OBJECTDIR}/backlight.o backlight.c 
+	
+${OBJECTDIR}/display.o: display.c  .generated_files/flags/default/759ddd11699c2667f815df2b5c6a5dde4479d3ca .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/display.o.d 
+	@${RM} ${OBJECTDIR}/display.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/display.o.d" -MT "${OBJECTDIR}/display.o.d" -MT ${OBJECTDIR}/display.o -o ${OBJECTDIR}/display.o display.c 
+	
+${OBJECTDIR}/dummy.o: dummy.c  .generated_files/flags/default/dafac37565e03ce4082455f48105b321f55b2fad .generated_files/flags/default/9102a0478522241ef752e9370635837b15197514
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/dummy.o.d 
+	@${RM} ${OBJECTDIR}/dummy.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -I"." -I"FreeRTOS/Source/include" -I"FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/" -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/dummy.o.d" -MT "${OBJECTDIR}/dummy.o.d" -MT ${OBJECTDIR}/dummy.o -o ${OBJECTDIR}/dummy.o dummy.c 
 	
 endif
 

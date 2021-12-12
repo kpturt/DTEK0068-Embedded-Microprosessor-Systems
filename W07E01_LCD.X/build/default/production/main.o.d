@@ -18,15 +18,19 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  FreeRTOS/Source/include/deprecated_definitions.h \
  FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/portmacro.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\sleep.h \
- FreeRTOS/Source/include/mpu_wrappers.h clock_config.h FreeRTOSConfig.h \
- FreeRTOS/Source/include/task.h FreeRTOS/Source/include/list.h \
+ FreeRTOS/Source/include/mpu_wrappers.h FreeRTOS/Source/include/semphr.h \
  FreeRTOS/Source/include/queue.h FreeRTOS/Source/include/task.h \
+ FreeRTOS/Source/include/list.h clock_config.h FreeRTOSConfig.h \
+ FreeRTOS/Source/include/task.h FreeRTOS/Source/include/queue.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\string.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\stdio.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h \
- FreeRTOS/Source/include/semphr.h FreeRTOS/Source/include/queue.h
+ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h \
+ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\cpufunc.h uart.h \
+ ../W07E01_LCD.X/FreeRTOS/Source/adc.h lcd.h backlight.h display.h \
+ dummy.h
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -70,17 +74,21 @@ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\sleep.h:
 
 FreeRTOS/Source/include/mpu_wrappers.h:
 
+FreeRTOS/Source/include/semphr.h:
+
+FreeRTOS/Source/include/queue.h:
+
+FreeRTOS/Source/include/task.h:
+
+FreeRTOS/Source/include/list.h:
+
 clock_config.h:
 
 FreeRTOSConfig.h:
 
 FreeRTOS/Source/include/task.h:
 
-FreeRTOS/Source/include/list.h:
-
 FreeRTOS/Source/include/queue.h:
-
-FreeRTOS/Source/include/task.h:
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\string.h:
 
@@ -92,6 +100,18 @@ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\stdio.h:
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h:
 
-FreeRTOS/Source/include/semphr.h:
+f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h:
 
-FreeRTOS/Source/include/queue.h:
+f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\cpufunc.h:
+
+uart.h:
+
+../W07E01_LCD.X/FreeRTOS/Source/adc.h:
+
+lcd.h:
+
+backlight.h:
+
+display.h:
+
+dummy.h:

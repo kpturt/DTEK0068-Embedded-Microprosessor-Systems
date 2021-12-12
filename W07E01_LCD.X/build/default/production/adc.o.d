@@ -1,4 +1,4 @@
-build/default/production/uart.o.d build/default/production/uart.o: uart.c \
+build/default/production/adc.o.d build/default/production/adc.o: adc.c \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\io.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\sfr_defs.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\inttypes.h \
@@ -11,20 +11,17 @@ build/default/production/uart.o.d build/default/production/uart.o: uart.c \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\xmega.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\lock.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\string.h \
+ FreeRTOS/Source/include/FreeRTOS.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\stdio.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h \
- FreeRTOS/Source/include/FreeRTOS.h FreeRTOSConfig.h \
- FreeRTOS/Source/include/projdefs.h FreeRTOS/Source/include/portable.h \
+ FreeRTOSConfig.h FreeRTOS/Source/include/projdefs.h \
+ FreeRTOS/Source/include/portable.h \
  FreeRTOS/Source/include/deprecated_definitions.h \
  FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/portmacro.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\sleep.h \
- FreeRTOS/Source/include/mpu_wrappers.h clock_config.h FreeRTOSConfig.h \
- FreeRTOS/Source/include/task.h FreeRTOS/Source/include/list.h \
- FreeRTOS/Source/include/queue.h FreeRTOS/Source/include/task.h uart.h \
- ../W07E01_LCD.X/FreeRTOS/Source/adc.h FreeRTOS/Source/include/semphr.h \
- FreeRTOS/Source/include/queue.h
+ FreeRTOS/Source/include/mpu_wrappers.h FreeRTOS/Source/include/semphr.h \
+ FreeRTOS/Source/include/queue.h FreeRTOS/Source/include/task.h \
+ FreeRTOS/Source/include/list.h ../W07E01_LCD.X/FreeRTOS/Source/adc.h \
+ uart.h
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -50,15 +47,9 @@ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h:
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\lock.h:
 
-f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\string.h:
+FreeRTOS/Source/include/FreeRTOS.h:
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h:
-
-f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\stdio.h:
-
-f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h:
-
-FreeRTOS/Source/include/FreeRTOS.h:
 
 FreeRTOSConfig.h:
 
@@ -74,22 +65,14 @@ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\sleep.h:
 
 FreeRTOS/Source/include/mpu_wrappers.h:
 
-clock_config.h:
+FreeRTOS/Source/include/semphr.h:
 
-FreeRTOSConfig.h:
+FreeRTOS/Source/include/queue.h:
 
 FreeRTOS/Source/include/task.h:
 
 FreeRTOS/Source/include/list.h:
 
-FreeRTOS/Source/include/queue.h:
-
-FreeRTOS/Source/include/task.h:
-
-uart.h:
-
 ../W07E01_LCD.X/FreeRTOS/Source/adc.h:
 
-FreeRTOS/Source/include/semphr.h:
-
-FreeRTOS/Source/include/queue.h:
+uart.h:
