@@ -22,10 +22,10 @@ void timeout_timer_callback()
     TCB3.CCMP = 0;
 }
 
-void backlight_task(void *param)
+void backlight_task(void *parameters)
 {
     backlight_time = xTimerCreate(
-        "Backlight",
+        "backlight",
         100,
         pdTRUE,
         ( void * ) 3,
@@ -41,11 +41,13 @@ void backlight_task(void *param)
     xTimerStart(backlight_time, 0);
     
     vTaskDelay(200);
+    
     for(;;)
     {
         xSemaphoreTake(mutex_handle, 100);
         adc_result = read_adc_values();
         xSemaphoreGive(mutex_handle);
+        
         if(last_pm == adc_result.pm)
         {
             if(xTimerIsTimerActive(timeout_time) == pdFALSE)
@@ -69,4 +71,10 @@ void backlight_task(void *param)
     // Above loop will not end, but as a practice, tasks should always include
     // a vTaskDelete() call just-in-case
     vTaskDelete(NULL);
+}
+
+void backlight_init()
+{
+    PORTB.DIRSET = PIN5_bm;
+    PORTB.OUTSET = PIN5_bm;
 }

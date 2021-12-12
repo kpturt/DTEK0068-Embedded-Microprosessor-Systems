@@ -16,6 +16,6 @@
 void usart_init(void);
 void usart_send_char(char c);
 void usart_send_string(char *str);
-void usart_task(void *parameters);
+void usart_task(void* parameters);
 
 #endif	/* USART_H */

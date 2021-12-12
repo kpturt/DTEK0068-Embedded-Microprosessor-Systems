@@ -32,7 +32,8 @@ void led_timer_callback()
 
 void dummy_task(void *parameters)
 {
-    PORTF.DIRSET = PIN5_bm;
+    PORTF.DIRSET = PIN5_bm; // Sets PF5 (LED) as output (1)
+    
     TimerHandle_t led_timer = xTimerCreate(
         "led",
         100,

@@ -265,6 +265,8 @@
         <property key="memories.programmemory.ranges" value="0-5fff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Repos/MPLABXProjects/W07E01_LCD.X/debug/default/W07E01_LCD_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"

@@ -13,11 +13,12 @@ build/default/production/lcd.o.d build/default/production/lcd.o: lcd.c \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\lock.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h \
- f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\math.h FreeRTOSConfig.h \
- FreeRTOS/Source/include/FreeRTOS.h \
+ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\math.h \
+ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\stdio.h \
+ f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h \
- FreeRTOSConfig.h FreeRTOS/Source/include/projdefs.h \
- FreeRTOS/Source/include/portable.h \
+ FreeRTOSConfig.h FreeRTOS/Source/include/FreeRTOS.h FreeRTOSConfig.h \
+ FreeRTOS/Source/include/projdefs.h FreeRTOS/Source/include/portable.h \
  FreeRTOS/Source/include/deprecated_definitions.h \
  FreeRTOS/Source/portable/ThirdParty/Partner-Supported-Ports/GCC/AVR_Mega0/portmacro.h \
  f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\sleep.h \
@@ -58,11 +59,15 @@ f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h:
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\math.h:
 
+f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\stdio.h:
+
+f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h:
+
+f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h:
+
 FreeRTOSConfig.h:
 
 FreeRTOS/Source/include/FreeRTOS.h:
-
-f:\ohjelmat\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h:
 
 FreeRTOSConfig.h:
 

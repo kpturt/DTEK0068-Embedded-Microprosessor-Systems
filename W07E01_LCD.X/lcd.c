@@ -41,6 +41,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdio.h>
 // FreeRTOS
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
@@ -52,8 +53,6 @@
 #include "lcd.h"
 #include "display.h"
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
-
-
 
 /*
  * LCD_CMD_DELAY - Delay between LCD commands
@@ -92,8 +91,6 @@
     LCD_ENABLE_PULSE();         \
     LCD_CMD_DELAY();            \
 }
-
-const char man_text[] = "DTEK0068 Embedded Microprocessor Systems";
 
 /******************************************************************************
  * Public functions
@@ -222,7 +219,9 @@ void lcd_init(void)
      * systems...
      */
     LCD_CMD_SEND(0b00000110);
-}
+}// End of given functions
+
+const char upper_display_text[] = "DTEK0068 Embedded Microprocessor Systems";
 
 void display_timer_callback()
 {
@@ -237,7 +236,7 @@ void display_timer_callback()
 }
 void scroll_timer_callback()
 {
-    if(leftmost_char == strlen(man_text)-16)
+    if(leftmost_char == strlen(upper_display_text)-16)
     {
         direction = 1;
     }
@@ -259,46 +258,35 @@ void lcd_task(void *parameters)
     lcd_init(); // Initialize lcd
     direction = 0;
     leftmost_char = 0;
-    TimerHandle_t display_time = xTimerCreate
-          ( /* Just a text name, not used by the RTOS
-            kernel. */
-            "Timer",
-            /* The timer period in ticks, must be
-            greater than 0. */
-            666,
-            /* The timers will auto-reload themselves
-            when they expire. */
-            pdTRUE,
-            /* The ID is used to store a count of the
-            number of times the timer has expired, which
-            is initialised to 0. */
-            ( void * ) 0,
-            /* Each timer calls the same callback when
-            it expires. */
-            display_timer_callback);
     
-        TimerHandle_t scroll_time = xTimerCreate
-          ( /* Just a text name, not used by the RTOS
-            kernel. */
-            "Scroll",
-            /* The timer period in ticks, must be
-            greater than 0. */
-            200,
-            /* The timers will auto-reload themselves
-            when they expire. */
-            pdTRUE,
-            /* The ID is used to store a count of the
-            number of times the timer has expired, which
-            is initialised to 0. */
-            ( void * ) 1,
-            /* Each timer calls the same callback when
-            it expires. */
-            scroll_timer_callback);
+    TimerHandle_t display_time = xTimerCreate(
+        "timer",
+        660, // 660 ms
+        pdTRUE,
+        ( void * ) 0,
+        display_timer_callback
+    );
+    
+    TimerHandle_t scroll_time = xTimerCreate(
+        "scroll",
+        200, // 200 ms
+        pdTRUE,
+        ( void * ) 1,
+        scroll_timer_callback
+     );
     xTimerStart(scroll_time, 10);
     xTimerStart(display_time, 10);
     
-    char adc_val[10];
+    //uint16_t ldr_value; // Value for the potentiometer read;
+    char ldr_value_string[800];
+    //uint16_t ntc_value; // Value for the potentiometer read;
+    char ntc_value_string[800];
+    //uint16_t pm_value; // Value for the potentiometer read;
+    char pm_value_string[800];
     
+    //ldr_value = ldr_read();
+    //ntc_value = ntc_read();
+    //pm_value = pm_read();
     
     ADC_result_t adc_results;
     for(;;)
@@ -308,27 +296,27 @@ void lcd_task(void *parameters)
             switch(display_mode)
             {
                 case 0:
-                    sprintf(adc_val, "ldr: %d", adc_results.ldr);
+                    sprintf(ldr_value_string, "LDR: (%d)", adc_results.ldr);
                     lcd_clear();
-                    lcd_write(adc_val);
+                    lcd_write(ldr_value_string);
                     break;
                 case 1:
-                    sprintf(adc_val, "ntc: %d", adc_results.ntc);
+                    sprintf(ntc_value_string, "NTC: (%d)", adc_results.ntc);
                     lcd_clear();
-                    lcd_write(adc_val);
+                    lcd_write(ntc_value_string);
                     break;
                 case 2:
-                    sprintf(adc_val, "pot: %d", adc_results.pm);
+                    sprintf(pm_value_string, "PM: (%d)", adc_results.pm);
                     lcd_clear();
-                    lcd_write(adc_val);
+                    lcd_write(pm_value_string);
                     break;
                 default:
                     break;
             }
         }
         lcd_cursor_set(1, 0);
-        strncpy(display_man_text, man_text+leftmost_char, 16);
-        lcd_write(display_man_text);
+        strncpy(lower_display_text, upper_display_text+leftmost_char, 16);
+        lcd_write(lower_display_text);
     }
     
     // Above loop will not end, but as a practice, tasks should always include

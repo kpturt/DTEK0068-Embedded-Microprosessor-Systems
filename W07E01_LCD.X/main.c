@@ -71,11 +71,11 @@ void tcb_init(void)
 
 int main(void)
 {
-    mutex_handle = xSemaphoreCreateMutex();
+    mutex_handle = xSemaphoreCreateMutex(); // Create mutex before starting tasks
     usart_init(); // Initialise USART
-    tcb_init();
-    lcd_queue = xQueueCreate(1, sizeof(ADC_result_t));
+    tcb_init(); // Initialise TCB3
     
+    lcd_queue = xQueueCreate(1, sizeof(ADC_result_t));
     
     PORTB.DIRSET = PIN5_bm; // Sets PORTC (LCD) ports as outputs (1)
     PORTB.OUTSET = PIN5_bm; // Sets PORTC (LCD) ports as outputs (1)
@@ -90,23 +90,17 @@ int main(void)
     // PF4 (PM) No pull-up, no invert, disable input buffer
     PORTF.PIN4CTRL = PORT_ISC_INPUT_DISABLE_gc;
     
-    // Set Port A nternal reference voltage to 2.5
+    // Set Port A internal reference voltage to 2.5
     VREF.CTRLA |= VREF_ADC0REFSEL_2V5_gc;
     // Clear REFSEL
     ADC0.CTRLC &= ~(ADC_REFSEL_VDDREF_gc);
-    // Set Port C nternal reference voltage to 2.5
+    // Set Port C internal reference voltage to 2.5
     ADC0.CTRLC |= ADC_REFSEL_INTREF_gc;
     
     // Enable (power up) ADC (10-bit resolution is default)
     ADC0.CTRLA |= ADC_ENABLE_bm;
     // Set prescaler to 16
     ADC0.CTRLC |= ADC_PRESC_DIV16_gc;
-    
-    //clock_init();
-    //port_init();
-    //tcb_init();
-    
-    // Create mutex before starting tasks
     
 
     // For printing to serial
@@ -119,6 +113,7 @@ int main(void)
         NULL 
     );
     
+    // For LCD task
     xTaskCreate(
         lcd_task,
         "lcd",
@@ -128,6 +123,7 @@ int main(void)
         NULL    
     );
     
+    // For backlight task
     xTaskCreate(
         backlight_task,
         "backlight",
@@ -137,6 +133,7 @@ int main(void)
         NULL    
     );
     
+    // For display task
     xTaskCreate(
         display_task,
         "display",
@@ -146,6 +143,7 @@ int main(void)
         NULL
     );
     
+    // For dummy task
     xTaskCreate( 
         dummy_task, 
         "dummy", 

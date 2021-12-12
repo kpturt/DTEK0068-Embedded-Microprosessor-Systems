@@ -27,7 +27,6 @@ void usart_send_char(char c)
     }        
     USART0.TXDATAL = c;
 }
-
 // Function to send strings to terminal, from Microship USART guide
 void usart_send_string(char *str)
 {
@@ -36,7 +35,6 @@ void usart_send_string(char *str)
         usart_send_char(str[i]);
     }
 }
-
 // Function to read terminal, from Microship USART guide
 uint8_t usart_read()
 {
@@ -48,38 +46,37 @@ uint8_t usart_read()
 }
 
 // Function to print to terminal
-void usart_task(void *parameters) 
+void usart_task(void* parameters) 
 { 
-    uint16_t pm_value; // Value for the potentiometer read;
-    char pm_value_string[800];
-    uint16_t ldr_value; // Value for the potentiometer read;
+    //uint16_t ldr_value; // Value for the potentiometer read;
     char ldr_value_string[800];
-    uint16_t ntc_value; // Value for the potentiometer read;
+    //uint16_t ntc_value; // Value for the potentiometer read;
     char ntc_value_string[800];
+    //uint16_t pm_value; // Value for the potentiometer read;
+    char pm_value_string[800];
     
     ADC_result_t output_buffer; // Store value from output queue
-    char ldr_str[12];
+    //char ldr_str[12];
     
     // This task will run indefinitely
     for (;;)
     {
-        pm_value = pm_read();
-        ldr_value = ldr_read();
-        ntc_value = ntc_read();
-        sprintf(pm_value_string, "PM value: (%d) ", pm_value);
-        sprintf(ldr_value_string, "LDR value: (%d) ", ldr_value);
-        sprintf(ntc_value_string, "NTC value: (%d)", ntc_value);
-        usart_send_string("\n\rValues - ");
-        usart_send_string(pm_value_string);
-        usart_send_string(ldr_value_string);
-        usart_send_string(ntc_value_string);
-        vTaskDelay(1000 / portTICK_PERIOD_MS); //1000ms or 1 second delay
-        
         xSemaphoreTake(mutex_handle, 100);
+        //ldr_value = ldr_read();
+        //ntc_value = ntc_read();
+        //pm_value = pm_read();
         output_buffer = read_adc_values();
         xSemaphoreGive(mutex_handle);
-        sprintf(ldr_str, "LDR: %d\r\n", output_buffer.ldr);
-        usart_send_string(ldr_str);
+        
+        sprintf(ldr_value_string, "LDR value: (%d) ", output_buffer.ldr);
+        sprintf(ntc_value_string, "NTC value: (%d) ", output_buffer.ntc);
+        sprintf(pm_value_string, "PM value: (%d) ", output_buffer.pm);
+        usart_send_string("\n\rValues - ");
+        usart_send_string(ldr_value_string); 
+        usart_send_string(ntc_value_string);
+        usart_send_string(pm_value_string);
+        
+       vTaskDelay(50 / portTICK_PERIOD_MS); //100ms or 1/10 second delay
     }
     // Above loop will not end, but as a practice, tasks should always include
     // a vTaskDelete() call just-in-case

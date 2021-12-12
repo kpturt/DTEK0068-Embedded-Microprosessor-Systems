@@ -7,23 +7,25 @@
 
 #ifndef ADC_H
 #define	ADC_H
-#include "FreeRTOSConfig.h"
+#include "FreeRTOS.h"
 #include "semphr.h"
 
+// Initialise mutex
 SemaphoreHandle_t mutex_handle;
 
-void adc_init(void);
+// Initialise result data types
 typedef struct {
-    uint16_t pm;
     uint16_t ldr;
     uint16_t ntc;
+    uint16_t pm;
 }ADC_result_t;
 
-ADC_result_t read_adc_values();
-
-uint16_t pm_read(void);
+// Initialise functions
+void adc_init(void);
 uint16_t ldr_read(void);
 uint16_t ntc_read(void);
+uint16_t pm_read(void);
+ADC_result_t read_adc_values();
 
 #endif	/* ADC_H */
 
