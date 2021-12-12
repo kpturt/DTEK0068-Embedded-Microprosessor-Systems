@@ -72,9 +72,3 @@ void backlight_task(void *parameters)
     // a vTaskDelete() call just-in-case
     vTaskDelete(NULL);
 }
-
-void backlight_init()
-{
-    PORTB.DIRSET = PIN5_bm;
-    PORTB.OUTSET = PIN5_bm;
-}

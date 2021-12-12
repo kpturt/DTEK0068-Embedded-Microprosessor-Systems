@@ -76,7 +76,7 @@ void usart_task(void* parameters)
         usart_send_string(ntc_value_string);
         usart_send_string(pm_value_string);
         
-       vTaskDelay(50 / portTICK_PERIOD_MS); //100ms or 1/10 second delay
+       vTaskDelay(100 / portTICK_PERIOD_MS); //100ms or 1/10 second delay
     }
     // Above loop will not end, but as a practice, tasks should always include
     // a vTaskDelete() call just-in-case

@@ -15,7 +15,6 @@ extern "C" {
 void display_task(void *parameters);
 QueueHandle_t lcd_queue;
 
-
 #ifdef	__cplusplus
 }
 #endif

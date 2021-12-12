@@ -36,12 +36,11 @@
 // Initialize functions
 
 void clock_init (void);
-void port_init (void);
 void tcb_init (void);
 
 SemaphoreHandle_t mutex_handle; // Global mutex
 
-// Function to intialise clock
+// Function to intialise clock, probably not needed
 void clock_init(void)
 {
     CPU_CCP = CCP_IOREG_gc; //Enable writing to protected register
@@ -149,7 +148,7 @@ int main(void)
         "dummy", 
         configMINIMAL_STACK_SIZE, 
         NULL, 
-        tskIDLE_PRIORITY, 
+        tskIDLE_PRIORITY,  // Should have high priority, like 20
         NULL 
     ); 
     

@@ -188,8 +188,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/backlight.o
  .data          0x0000000000000000        0x0 build/default/production/backlight.o
  .bss           0x0000000000000000        0x0 build/default/production/backlight.o
- .text.backlight_init
-                0x0000000000000000        0xc build/default/production/backlight.o
  .text          0x0000000000000000        0x0 build/default/production/display.o
  .data          0x0000000000000000        0x0 build/default/production/display.o
  .bss           0x0000000000000000        0x0 build/default/production/display.o
@@ -691,7 +689,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x568
+.debug_aranges  0x0000000000000000      0x560
  *(.debug_aranges)
  .debug_aranges
                 0x0000000000000000       0x40 build/default/production/FreeRTOS/Source/list.o
@@ -714,16 +712,16 @@ END GROUP
  .debug_aranges
                 0x00000000000004b0       0x38 build/default/production/adc.o
  .debug_aranges
-                0x00000000000004e8       0x38 build/default/production/backlight.o
+                0x00000000000004e8       0x30 build/default/production/backlight.o
  .debug_aranges
-                0x0000000000000520       0x20 build/default/production/display.o
+                0x0000000000000518       0x20 build/default/production/display.o
  .debug_aranges
-                0x0000000000000540       0x28 build/default/production/dummy.o
+                0x0000000000000538       0x28 build/default/production/dummy.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0xd805
+.debug_info     0x0000000000000000     0xd65c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000     0x248a F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  .debug_info    0x000000000000248a      0x533 build/default/production/FreeRTOS/Source/list.o
@@ -736,11 +734,11 @@ END GROUP
  .debug_info    0x000000000000a42d      0x8f4 build/default/production/uart.o
  .debug_info    0x000000000000ad21      0xe35 build/default/production/lcd.o
  .debug_info    0x000000000000bb56      0x79b build/default/production/adc.o
- .debug_info    0x000000000000c2f1      0xa30 build/default/production/backlight.o
- .debug_info    0x000000000000cd21      0x42f build/default/production/display.o
- .debug_info    0x000000000000d150      0x6b5 build/default/production/dummy.o
+ .debug_info    0x000000000000c2f1      0x887 build/default/production/backlight.o
+ .debug_info    0x000000000000cb78      0x42f build/default/production/display.o
+ .debug_info    0x000000000000cfa7      0x6b5 build/default/production/dummy.o
 
-.debug_abbrev   0x0000000000000000     0x3ae0
+.debug_abbrev   0x0000000000000000     0x3abb
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000     0x2296 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  .debug_abbrev  0x0000000000002296      0x116 build/default/production/FreeRTOS/Source/list.o
@@ -753,11 +751,11 @@ END GROUP
  .debug_abbrev  0x000000000000312d      0x218 build/default/production/uart.o
  .debug_abbrev  0x0000000000003345      0x23c build/default/production/lcd.o
  .debug_abbrev  0x0000000000003581      0x127 build/default/production/adc.o
- .debug_abbrev  0x00000000000036a8      0x1c9 build/default/production/backlight.o
- .debug_abbrev  0x0000000000003871      0x102 build/default/production/display.o
- .debug_abbrev  0x0000000000003973      0x16d build/default/production/dummy.o
+ .debug_abbrev  0x00000000000036a8      0x1a4 build/default/production/backlight.o
+ .debug_abbrev  0x000000000000384c      0x102 build/default/production/display.o
+ .debug_abbrev  0x000000000000394e      0x16d build/default/production/dummy.o
 
-.debug_line     0x0000000000000000     0x3f56
+.debug_line     0x0000000000000000     0x3f39
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x187 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  .debug_line    0x0000000000000187      0x217 build/default/production/FreeRTOS/Source/list.o
@@ -770,11 +768,11 @@ END GROUP
  .debug_line    0x0000000000003053      0x317 build/default/production/uart.o
  .debug_line    0x000000000000336a      0x468 build/default/production/lcd.o
  .debug_line    0x00000000000037d2      0x1d6 build/default/production/adc.o
- .debug_line    0x00000000000039a8      0x254 build/default/production/backlight.o
- .debug_line    0x0000000000003bfc      0x173 build/default/production/display.o
- .debug_line    0x0000000000003d6f      0x1e7 build/default/production/dummy.o
+ .debug_line    0x00000000000039a8      0x237 build/default/production/backlight.o
+ .debug_line    0x0000000000003bdf      0x173 build/default/production/display.o
+ .debug_line    0x0000000000003d52      0x1e7 build/default/production/dummy.o
 
-.debug_frame    0x0000000000000000      0xfc4
+.debug_frame    0x0000000000000000      0xfb4
  *(.debug_frame)
  .debug_frame   0x0000000000000000       0x88 build/default/production/FreeRTOS/Source/list.o
  .debug_frame   0x0000000000000088      0x430 build/default/production/FreeRTOS/Source/queue.o
@@ -786,11 +784,11 @@ END GROUP
  .debug_frame   0x0000000000000d44       0x98 build/default/production/uart.o
  .debug_frame   0x0000000000000ddc       0x98 build/default/production/lcd.o
  .debug_frame   0x0000000000000e74       0x78 build/default/production/adc.o
- .debug_frame   0x0000000000000eec       0x60 build/default/production/backlight.o
- .debug_frame   0x0000000000000f4c       0x34 build/default/production/display.o
- .debug_frame   0x0000000000000f80       0x44 build/default/production/dummy.o
+ .debug_frame   0x0000000000000eec       0x50 build/default/production/backlight.o
+ .debug_frame   0x0000000000000f3c       0x34 build/default/production/display.o
+ .debug_frame   0x0000000000000f70       0x44 build/default/production/dummy.o
 
-.debug_str      0x0000000000000000     0x19bb
+.debug_str      0x0000000000000000     0x199c
  *(.debug_str)
  .debug_str     0x0000000000000000      0xf85 F:/Ohjelmat/MPLABX/v5.50/packs/Microchip/ATmega_DFP/2.3.126/xc8/avr/lib/avrxmega3/crtatmega4809.o
  .debug_str     0x0000000000000f85       0x2b build/default/production/FreeRTOS/Source/list.o
@@ -803,9 +801,9 @@ END GROUP
  .debug_str     0x00000000000017bb       0x4c build/default/production/uart.o
  .debug_str     0x0000000000001807       0x56 build/default/production/lcd.o
  .debug_str     0x000000000000185d        0x0 build/default/production/adc.o
- .debug_str     0x000000000000185d       0xa8 build/default/production/backlight.o
- .debug_str     0x0000000000001905       0x41 build/default/production/display.o
- .debug_str     0x0000000000001946       0x75 build/default/production/dummy.o
+ .debug_str     0x000000000000185d       0x89 build/default/production/backlight.o
+ .debug_str     0x00000000000018e6       0x41 build/default/production/display.o
+ .debug_str     0x0000000000001927       0x75 build/default/production/dummy.o
 
 .debug_loc      0x0000000000000000     0x4b72
  *(.debug_loc)
@@ -840,7 +838,7 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000      0x598
+.debug_ranges   0x0000000000000000      0x590
  *(.debug_ranges)
  .debug_ranges  0x0000000000000000       0x30 build/default/production/FreeRTOS/Source/list.o
  .debug_ranges  0x0000000000000030      0x148 build/default/production/FreeRTOS/Source/queue.o
@@ -852,9 +850,9 @@ END GROUP
  .debug_ranges  0x00000000000004b0       0x30 build/default/production/uart.o
  .debug_ranges  0x00000000000004e0       0x40 build/default/production/lcd.o
  .debug_ranges  0x0000000000000520       0x28 build/default/production/adc.o
- .debug_ranges  0x0000000000000548       0x28 build/default/production/backlight.o
- .debug_ranges  0x0000000000000570       0x10 build/default/production/display.o
- .debug_ranges  0x0000000000000580       0x18 build/default/production/dummy.o
+ .debug_ranges  0x0000000000000548       0x20 build/default/production/backlight.o
+ .debug_ranges  0x0000000000000568       0x10 build/default/production/display.o
+ .debug_ranges  0x0000000000000578       0x18 build/default/production/dummy.o
 
 .debug_macro
  *(.debug_macro)
