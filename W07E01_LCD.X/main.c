@@ -134,18 +134,19 @@ int main(void)
         NULL
     );
     
-    // For dummy task
+    /* For dummy task, other tasks have priority of tskIDLE, so priority 1 
+     * is enough here, is low on priority scale though.*/
     xTaskCreate( 
         dummy_task, 
         "dummy", 
         configMINIMAL_STACK_SIZE, 
         NULL, 
-        tskIDLE_PRIORITY,  // Should have high priority, like 20
+        1,  // task priority
         NULL 
     ); 
     
     // Start the scheduler 
-     vTaskStartScheduler(); 
-     // Scheduler will not return 
-     return 0; 
+    vTaskStartScheduler(); 
+    // Scheduler will not return 
+    return 0;
 }

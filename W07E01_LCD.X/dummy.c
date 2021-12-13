@@ -54,7 +54,7 @@ void dummy_task(void *parameters)
     
     for(;;)
     {
-        ;
+        vTaskDelay(100); // 100 ms delay to give other tasks time
     }
     
     // Above loop will not end, but as a practice, tasks should always include

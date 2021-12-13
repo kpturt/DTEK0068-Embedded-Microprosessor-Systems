@@ -74,12 +74,13 @@ void usart_task(void* parameters)
         sprintf(ldr_value_string, "LDR value: (%d) ", output_buffer.ldr);
         sprintf(ntc_value_string, "NTC value: (%d) ", output_buffer.ntc);
         sprintf(pm_value_string, "PM value: (%d) ", output_buffer.pm);
+        
         usart_send_string("\n\rValues - ");
         usart_send_string(ldr_value_string); 
         usart_send_string(ntc_value_string);
         usart_send_string(pm_value_string);
         
-       vTaskDelay(1000 / portTICK_PERIOD_MS); //1000ms or 1 second delay
+        vTaskDelay(1000 / portTICK_PERIOD_MS); //1000ms or 1 second delay
     }
     
     // Above loop will not end, but as a practice, tasks should always include

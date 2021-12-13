@@ -13,7 +13,6 @@
 #define LCD_LINE0       0
 #define LCD_LINE1       1
 
-
 #ifdef	__cplusplus
 extern "C" {
 #endif

@@ -63,7 +63,7 @@ void backlight_task(void *parameters)
     // Timer for screen blackout countdown
     TimerHandle_t timeout_time = xTimerCreate(
         "timeout",
-        20000, // 10 seconds timeout for backlight
+        10000, // 10 seconds timeout for backlight
         pdFALSE, // Timer is oneshot and will enter dormant when expires
         ( void * ) 4, 
         timeout_timer_callback // function call for timer expire

@@ -303,21 +303,22 @@ void lcd_task(void *parameters)
     {
         if(xQueueReceive(lcd_queue, &adc_results, 100) == pdTRUE)
         {
+            // Choose to display LDR, NTC or PM
             switch(display_mode)
             {
                 case 0:
                     sprintf(ldr_value_string, "LDR: %d", adc_results.ldr);
-                    lcd_clear();
+                    lcd_clear(); // No artifacts left behind
                     lcd_write(ldr_value_string);
                     break;
                 case 1:
                     sprintf(ntc_value_string, "NTC: %d", adc_results.ntc);
-                    lcd_clear();
+                    lcd_clear(); // No artifacts left behind
                     lcd_write(ntc_value_string);
                     break;
                 case 2:
                     sprintf(pm_value_string, "PM: %d", adc_results.pm);
-                    lcd_clear();
+                    lcd_clear(); // No artifacts left behind
                     lcd_write(pm_value_string);
                     break;
                 default:
@@ -325,6 +326,7 @@ void lcd_task(void *parameters)
             }
         }
         lcd_cursor_set(1, 0);
+        // Write to display
         strncpy(lower_display_text, upper_display_text+leftmost_char, 16);
         lcd_write(lower_display_text);
     }
