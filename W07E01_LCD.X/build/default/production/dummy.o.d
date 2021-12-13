@@ -24,7 +24,7 @@ build/default/production/dummy.o.d build/default/production/dummy.o: \
  FreeRTOS/Source/include/semphr.h FreeRTOS/Source/include/queue.h \
  FreeRTOS/Source/include/task.h FreeRTOS/Source/include/list.h \
  FreeRTOS/Source/include/timers.h ../W07E01_LCD.X/FreeRTOS/Source/adc.h \
- FreeRTOS/Source/include/task.h
+ FreeRTOS/Source/include/task.h dummy.h
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -91,3 +91,5 @@ FreeRTOS/Source/include/timers.h:
 ../W07E01_LCD.X/FreeRTOS/Source/adc.h:
 
 FreeRTOS/Source/include/task.h:
+
+dummy.h:

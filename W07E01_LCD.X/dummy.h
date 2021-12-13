@@ -8,7 +8,8 @@
 #ifndef DUMMY_H
 #define	DUMMY_H
 
-// Initialisations
+// Declarations
 void dummy_task(void *parameters);
+ADC_result_t adc_result;
 
 #endif	/* DUMMY_H */

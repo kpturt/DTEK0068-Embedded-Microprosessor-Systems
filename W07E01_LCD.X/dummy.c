@@ -14,21 +14,22 @@
 #include "timers.h"
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
 #include "task.h"
+#include "dummy.h"
 
 // Function for led timer callback
 void led_timer_callback()
 {
-    ADC_result_t adc_result = read_adc_values(); // Read adc
+    ADC_result_t adc_result = read_adc_values(); // Read ADC
     
     // If NTC value is greater than PM value, turn led on
     if(adc_result.ntc > adc_result.pm)
     {
-        // Set led on
+        // Set on board LED on
         PORTF.OUTCLR = PIN5_bm;
     }
     else
     {
-        // Set led off
+        // Set on board LED off
         PORTF.OUTSET = PIN5_bm;
     }
 }
@@ -38,7 +39,7 @@ void dummy_task(void *parameters)
 {
     PORTF.DIRSET = PIN5_bm; // Sets PF5 (LED) as output (1)
     
-    // Create timer for led
+    // Create timer for LED
     TimerHandle_t led_timer = xTimerCreate(
         "led",
         100, // once every 100 ms
@@ -48,7 +49,8 @@ void dummy_task(void *parameters)
     );
     
     xTimerStart(led_timer, 0);
-    vTaskDelay(200);
+    
+    vTaskDelay(200); // 200 ms delay before superloop
     
     for(;;)
     {

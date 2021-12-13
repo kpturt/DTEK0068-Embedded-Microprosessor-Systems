@@ -22,7 +22,8 @@ build/default/production/backlight.o.d \
  FreeRTOS/Source/include/mpu_wrappers.h FreeRTOS/Source/include/task.h \
  FreeRTOS/Source/include/list.h ../W07E01_LCD.X/FreeRTOS/Source/adc.h \
  FreeRTOS/Source/include/semphr.h FreeRTOS/Source/include/queue.h \
- FreeRTOS/Source/include/task.h FreeRTOS/Source/include/timers.h
+ FreeRTOS/Source/include/task.h FreeRTOS/Source/include/timers.h \
+ backlight.h
 
 f:\ohjelmat\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -79,3 +80,5 @@ FreeRTOS/Source/include/queue.h:
 FreeRTOS/Source/include/task.h:
 
 FreeRTOS/Source/include/timers.h:
+
+backlight.h:

@@ -10,7 +10,7 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 
-// Initialise result data types
+// Declare result data types
 typedef struct
 {
     uint16_t ldr;
@@ -18,7 +18,7 @@ typedef struct
     uint16_t pm;
 }ADC_result_t;
 
-// Initialisations
+// Declarations
 void adc_init(void);
 uint16_t ldr_read(void);
 uint16_t ntc_read(void);

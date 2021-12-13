@@ -17,10 +17,10 @@
 // Function for display task
 void display_task(void *parameters)
 {
-    // Initialisations
+    // Declaration
     ADC_result_t adc_results;
     
-    vTaskDelay(200);
+    vTaskDelay(200); // 200 ms delay before superloop
     
     for(;;)
     {

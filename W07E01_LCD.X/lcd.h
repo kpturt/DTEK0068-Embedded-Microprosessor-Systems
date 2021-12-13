@@ -53,7 +53,7 @@ void lcd_task(void *parameters);
 
 //-----------------------------------
 
-// Initialisations
+// Declarations
 uint8_t display_mode;
 uint8_t leftmost_char;
 uint8_t direction;

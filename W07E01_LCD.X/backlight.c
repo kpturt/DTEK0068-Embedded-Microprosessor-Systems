@@ -10,13 +10,11 @@
 #include "task.h"
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
 #include "timers.h"
+#include "backlight.h"
 
-// Initialisations
-ADC_result_t adc_result;
+// Timer handle declarations
 TimerHandle_t backlight_time;
 TimerHandle_t timeout_time;
-uint16_t last_pm_value;
-uint16_t current_pm_value;
 
 // Function to initialise TCB3
 void tcb_init(void)
@@ -72,9 +70,10 @@ void backlight_task(void *parameters)
     );
     
     xTimerStart(backlight_time, 0);
-    vTaskDelay(200);
     
-    last_pm_value = 0;
+    last_pm_value = 0; // Initialise pm value
+    
+    vTaskDelay(200); // 200 ms delay before superloop
     
     for(;;)
     {

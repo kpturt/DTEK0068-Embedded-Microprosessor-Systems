@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-// Initialisations
+// Declarations
 void display_task(void *parameters);
 QueueHandle_t lcd_queue;
 

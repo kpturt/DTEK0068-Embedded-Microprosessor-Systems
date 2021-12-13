@@ -33,7 +33,7 @@
 #include "display.h"
 #include "dummy.h"
 
-// Initialise functions
+// Function declarations
 void clock_init (void);
 void tcb_init (void);
 

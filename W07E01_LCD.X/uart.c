@@ -64,7 +64,7 @@ void usart_task(void* parameters)
     
     ADC_result_t output_buffer; // Store value from output queue
     
-    vTaskDelay(200);
+    vTaskDelay(200); // 200 ms delay before superloop
     
     // This task will run indefinitely
     for (;;)

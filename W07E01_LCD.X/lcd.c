@@ -259,7 +259,7 @@ void scroll_timer_callback()
 // Function for lcd task
 void lcd_task(void *parameters)
 {
-    // Initializations
+    // Initialisations
     lcd_init();
     direction = 0;
     leftmost_char = 0;
@@ -296,6 +296,8 @@ void lcd_task(void *parameters)
     //ldr_value = ldr_read();
     //ntc_value = ntc_read();
     //pm_value = pm_read();
+    
+    vTaskDelay(200); // 200 ms delay before superloop
     
     for(;;)
     {
