@@ -13,14 +13,31 @@
 
 // Initialisations
 ADC_result_t adc_result;
-uint16_t last_pm;
 TimerHandle_t backlight_time;
+TimerHandle_t timeout_time;
+uint16_t last_pm_value;
+uint16_t current_pm_value;
 
-// Function for backlight timer callback
+// Function to initialise TCB3
+void tcb_init(void)
+{
+    //Set PB5 as output
+    PORTB_DIR |= PIN5_bm;
+    PORTB_OUT |= PIN5_bm;
+    
+    TCB3.CCMP = 0x80FF; // Enable to generate 8bit PWM signal
+    TCB3.CTRLA |= TCB_ENABLE_bm; // Enable TCB3
+    // Divide CLK_PER by 2 to get lowest frequency
+    TCB3.CTRLA |= TCB_CLKSEL_CLKDIV2_gc;
+    TCB3.CTRLB |= TCB_CCMPEN_bm; // Enable pin output
+    TCB3.CTRLB |= TCB_CNTMODE_PWM8_gc; // Configure TCB to 8 bit mode
+}
+
+// Function for backlight timer callback, monitors backlight brightness by ldr
 void backlight_timer_callback()
 {
-    uint16_t ratio = adc_result.ldr*10/1023;
-    TCB3.CCMP = 0xFFFF - (0xFFFF/10*ratio);
+    uint16_t ratio = (adc_result.ldr*10)/1023;
+    TCB3.CCMP = 0x7fff/10*ratio; // 0x7ff half maximum value ? 32.768
 }
 
 // Function for timeout timer callback
@@ -39,41 +56,45 @@ void backlight_task(void *parameters)
     // Timer for backlight time
     backlight_time = xTimerCreate(
         "backlight",
-        100,
-        pdTRUE,
+        100, // 1/10 -> 10 times a second
+        pdTRUE, // Timer expires with set frequency
         ( void * ) 3,
-        backlight_timer_callback
+        backlight_timer_callback // function call for timer expire
     );
-    // Timer for timeout
+    
+    // Timer for screen blackout countdown
     TimerHandle_t timeout_time = xTimerCreate(
         "timeout",
-        10000,
-        pdFALSE,
+        20000, // 10 seconds timeout for backlight
+        pdFALSE, // Timer is oneshot and will enter dormant when expires
         ( void * ) 4, 
-        timeout_timer_callback
+        timeout_timer_callback // function call for timer expire
     );
-    xTimerStart(backlight_time, 0);
     
+    xTimerStart(backlight_time, 0);
     vTaskDelay(200);
+    
+    last_pm_value = 0;
     
     for(;;)
     {
-        xSemaphoreTake(mutex_handle, 100); // Take mutex
         adc_result = read_adc_values(); // Read adc values
-        xSemaphoreGive(mutex_handle); // Give mutex
-        
-        // If pm value equals and timeout is not on, start timeout
-        if(last_pm == adc_result.pm)
+        current_pm_value = adc_result.pm; // Write current pm value
+            
+        /* If pm value not changed, start 10 second timeout countdown
+         * equals "==" cannot be used since pm value is not stable.*/
+        if(last_pm_value <= current_pm_value+20 \
+        && last_pm_value >= current_pm_value-20)
         {
             if(xTimerIsTimerActive(timeout_time) == pdFALSE)
             {
                 xTimerStart(timeout_time, 0);
-            }
+            }   
         }
-        /* Else if backoutlight is not on, start it
-         * or if timer is on, stop it
-         */
-        else{
+            
+        // If value changed, wake up the display
+        else
+        {
             if(xTimerIsTimerActive(backlight_time) == pdFALSE)
             {
                 xTimerStart(backlight_time, 0);
@@ -82,8 +103,10 @@ void backlight_task(void *parameters)
             {
                 xTimerStop(timeout_time,0);
             }
-            last_pm = adc_result.pm;
         }
+        
+        vTaskDelay(50); // Small delay for the pm change to be noticed
+        last_pm_value = current_pm_value; // Write current pm value as last
     }
     
     // Above loop will not end, but as a practice, tasks should always include

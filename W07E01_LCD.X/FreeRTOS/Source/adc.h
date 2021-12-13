@@ -11,7 +11,8 @@
 #include "semphr.h"
 
 // Initialise result data types
-typedef struct {
+typedef struct
+{
     uint16_t ldr;
     uint16_t ntc;
     uint16_t pm;

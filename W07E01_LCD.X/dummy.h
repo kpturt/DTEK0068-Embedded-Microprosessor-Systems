@@ -12,4 +12,3 @@
 void dummy_task(void *parameters);
 
 #endif	/* DUMMY_H */
-

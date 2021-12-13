@@ -24,10 +24,8 @@ void display_task(void *parameters)
     
     for(;;)
     {
-        xSemaphoreTake(mutex_handle, 100); // Take mutex
         adc_results = read_adc_values(); // Read adc values
-        xQueueOverwrite(lcd_queue, &adc_results); // Add new items to queue
-        xSemaphoreGive(mutex_handle); // Give mutex
+        xQueueOverwrite(lcd_queue, &adc_results); // Add new values to queue
         vTaskDelay(100);
     }
     

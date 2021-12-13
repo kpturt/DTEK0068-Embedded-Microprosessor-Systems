@@ -18,18 +18,18 @@
 // Function for led timer callback
 void led_timer_callback()
 {
-    xSemaphoreTake(mutex_handle, 100); // Take mutex
-    ADC_result_t adc_result = read_adc_values(); // read adc
-    xSemaphoreGive(mutex_handle); // Give mutex
+    ADC_result_t adc_result = read_adc_values(); // Read adc
     
-    // This changes the led on/off depending on if NTC > PM value
+    // If NTC value is greater than PM value, turn led on
     if(adc_result.ntc > adc_result.pm)
     {
-        PORTF.OUTSET = PIN5_bm;
+        // Set led on
+        PORTF.OUTCLR = PIN5_bm;
     }
     else
     {
-        PORTF.OUTCLR = PIN5_bm;
+        // Set led off
+        PORTF.OUTSET = PIN5_bm;
     }
 }
 
@@ -41,8 +41,8 @@ void dummy_task(void *parameters)
     // Create timer for led
     TimerHandle_t led_timer = xTimerCreate(
         "led",
-        100,
-        pdTRUE,
+        100, // once every 100 ms
+        pdTRUE, // Timer expires with set frequency
         ( void * ) 5,
         led_timer_callback
     );

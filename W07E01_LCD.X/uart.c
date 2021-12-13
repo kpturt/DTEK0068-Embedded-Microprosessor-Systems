@@ -25,6 +25,7 @@ void usart_init(void)
     // For enabling transmitter
     USART0.CTRLB |= USART_TXEN_bm;
 }
+
 // Function to send chars to terminal, from Microship USART guide
 void usart_send_char(char c)
 {
@@ -34,6 +35,7 @@ void usart_send_char(char c)
     }        
     USART0.TXDATAL = c;
 }
+
 // Function to send strings to terminal, from Microship USART guide
 void usart_send_string(char *str)
 {
@@ -42,6 +44,7 @@ void usart_send_string(char *str)
         usart_send_char(str[i]);
     }
 }
+
 // Function to read terminal, from Microship USART guide
 uint8_t usart_read()
 {
@@ -55,11 +58,8 @@ uint8_t usart_read()
 // Function to print to terminal
 void usart_task(void* parameters) 
 { 
-    //uint16_t ldr_value; // Value for the potentiometer read;
     char ldr_value_string[800];
-    //uint16_t ntc_value; // Value for the potentiometer read;
     char ntc_value_string[800];
-    //uint16_t pm_value; // Value for the potentiometer read;
     char pm_value_string[800];
     
     ADC_result_t output_buffer; // Store value from output queue
@@ -69,12 +69,7 @@ void usart_task(void* parameters)
     // This task will run indefinitely
     for (;;)
     {
-        xSemaphoreTake(mutex_handle, 100); // Take mutex
-        //ldr_value = ldr_read();
-        //ntc_value = ntc_read();
-        //pm_value = pm_read();
         output_buffer = read_adc_values();
-        xSemaphoreGive(mutex_handle); // Give mutex
         
         sprintf(ldr_value_string, "LDR value: (%d) ", output_buffer.ldr);
         sprintf(ntc_value_string, "NTC value: (%d) ", output_buffer.ntc);
@@ -84,8 +79,9 @@ void usart_task(void* parameters)
         usart_send_string(ntc_value_string);
         usart_send_string(pm_value_string);
         
-       //vTaskDelay(100 / portTICK_PERIOD_MS); //100ms or 1/10 second delay
+       vTaskDelay(1000 / portTICK_PERIOD_MS); //1000ms or 1 second delay
     }
+    
     // Above loop will not end, but as a practice, tasks should always include
     // a vTaskDelete() call just-in-case
     vTaskDelete(NULL);

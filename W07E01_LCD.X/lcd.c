@@ -223,6 +223,7 @@ void lcd_init(void)
 
 const char upper_display_text[] = "DTEK0068 Embedded Microprocessor Systems";
 
+// Function for display timer callback
 void display_timer_callback()
 {
     if(display_mode == 2)
@@ -234,6 +235,8 @@ void display_timer_callback()
         display_mode++;
     }
 }
+
+// Function for scroll timer callback
 void scroll_timer_callback()
 {
     if(leftmost_char == strlen(upper_display_text)-16)
@@ -265,8 +268,8 @@ void lcd_task(void *parameters)
     // Function for display time timer
     TimerHandle_t display_time = xTimerCreate(
         "timer",
-        660, // 660 ms
-        pdTRUE,
+        660, // change line every 660 ms
+        pdTRUE, // Timer expires with set frequency
         ( void * ) 0,
         display_timer_callback
     );
@@ -275,10 +278,11 @@ void lcd_task(void *parameters)
     TimerHandle_t scroll_time = xTimerCreate(
         "scroll",
         200, // 200 ms
-        pdTRUE,
+        pdTRUE, // Timer expires with set frequency
         ( void * ) 1,
         scroll_timer_callback
      );
+    
     xTimerStart(scroll_time, 10);
     xTimerStart(display_time, 10);
     
@@ -300,17 +304,17 @@ void lcd_task(void *parameters)
             switch(display_mode)
             {
                 case 0:
-                    sprintf(ldr_value_string, "LDR: (%d)", adc_results.ldr);
+                    sprintf(ldr_value_string, "LDR: %d", adc_results.ldr);
                     lcd_clear();
                     lcd_write(ldr_value_string);
                     break;
                 case 1:
-                    sprintf(ntc_value_string, "NTC: (%d)", adc_results.ntc);
+                    sprintf(ntc_value_string, "NTC: %d", adc_results.ntc);
                     lcd_clear();
                     lcd_write(ntc_value_string);
                     break;
                 case 2:
-                    sprintf(pm_value_string, "PM: (%d)", adc_results.pm);
+                    sprintf(pm_value_string, "PM: %d", adc_results.pm);
                     lcd_clear();
                     lcd_write(pm_value_string);
                     break;

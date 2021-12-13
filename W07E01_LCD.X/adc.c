@@ -7,7 +7,7 @@
 
 #include <avr/io.h>
 #include "FreeRTOS.h"
-#include <semphr.h>//For mutex
+#include <semphr.h> //For mutex
 #include "../W07E01_LCD.X/FreeRTOS/Source/adc.h"
 #include "uart.h"
 
@@ -59,12 +59,14 @@ uint16_t pm_read(void)
     return ADC0.RES; // Read and return PM value
 }
 
-// Function to read and set adc values
+// Function to read and set adc values, protected by mutex
 ADC_result_t read_adc_values()
 {
     ADC_result_t adc_result;
+    xSemaphoreTake(mutex_handle, 100); // Take mutex
     adc_result.ldr = ldr_read();
     adc_result.ntc = ntc_read();
     adc_result.pm = pm_read();
+    xSemaphoreGive(mutex_handle); // Give mutex
     return adc_result;
 }

@@ -58,35 +58,21 @@ void clock_init(void)
     }
 }
 
-// Function to initialise TCB3
-void tcb_init(void)
-{
-    //Set PB5 as output
-    PORTB_DIR |= PIN5_bm;
-    PORTB_OUT |= PIN5_bm;
-    
-    TCB3.CCMP = 0x80FF; // Enable to generate 8bit PWM signal
-    TCB3.CTRLA |= TCB_ENABLE_bm; // Enable TCB3
-    // Divide CLK_PER by 2 to get lowest frequency
-    TCB3.CTRLA |= TCB_CLKSEL_CLKDIV2_gc;
-    TCB3.CTRLB |= TCB_CCMPEN_bm; // Enable pin output
-    TCB3.CTRLB |= TCB_CNTMODE_PWM8_gc; // Configure TCB to 8 bit mode
-}
-
+// The main function
 int main(void)
 {
-    // Create mutex before starting tasks
-    mutex_handle = xSemaphoreCreateMutex();
-    usart_init(); // Initialise USART
-    tcb_init(); // Initialise TCB3
-    
-    lcd_queue = xQueueCreate(1, sizeof(ADC_result_t));
-    
     PORTB.DIRSET = PIN5_bm; // Sets PORTC (LCD) ports as outputs (1)
     PORTB.OUTSET = PIN5_bm; // Sets PORTC (LCD) ports as outputs (1)
     PORTF.DIRCLR = PIN4_bm; // Set PF4 (PM) as input (0)
     PORTE.DIRCLR = PIN0_bm; // Set PE0 (LDR) as input (0)
     PORTE.DIRCLR = PIN1_bm; // Set PE1 (NTC) as input (0)
+    
+    // Create mutex before starting tasks
+    mutex_handle = xSemaphoreCreateMutex();
+    usart_init(); // Initialise USART
+    tcb_init(); // Initialise TCB3
+    //clock_init(); not needed?
+    lcd_queue = xQueueCreate(1, sizeof(ADC_result_t));
     
     // PE0 (LDR) No pull-up, no invert, disable input buffer
     PORTE.PIN0CTRL = PORT_ISC_INPUT_DISABLE_gc;
